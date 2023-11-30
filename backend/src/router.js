@@ -10,7 +10,6 @@ const client = require("../database/client");
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
 
-// Route to get a list of items
 router.get("/games", (req, res) => {
   client
     .query("SELECT * FROM game")
@@ -23,13 +22,20 @@ router.get("/games", (req, res) => {
     });
 });
 
-// Route to get a specific item by ID
 router.get("/games/:id", (req, res) => {
+  const gameId = req.params.id;
+  const query = `
+    SELECT game.*, genre.*
+    FROM game
+    LEFT JOIN genre ON game.genre_id = genre.id
+    WHERE game.id = ?
+  `;
+
   client
-    .query("SELECT * FROM game WHERE id = ?", [req.params.id])
+    .query(query, [gameId])
     .then((result) => {
       if (result[0].length === 0) {
-        res.status(404).json({ message: "Aucun jeux trouvé" });
+        res.status(404).json({ message: "Aucun jeu trouvé" });
       } else {
         res.status(200).json(result[0][0]);
       }
@@ -40,9 +46,10 @@ router.get("/games/:id", (req, res) => {
     });
 });
 
+// Route to get a specific item by ID
+router.get("/items/:id", itemControllers.read);
+
 // Route to add a new item
 router.post("/items", itemControllers.add);
-
-/* ************************************************************************* */
 
 module.exports = router;
