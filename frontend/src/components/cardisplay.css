@@ -1,0 +1,19 @@
+.gamepics {
+  width: 10rem;
+}
+
+.Ctn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.One {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -1px -1px 13px 3px rgba(0, 0, 0, 0.28);
+}
+
+h3 {
+  font-size: 0.8rem;
+}
