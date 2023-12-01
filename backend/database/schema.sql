@@ -10,7 +10,7 @@ create table game (
   id INT PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(255) NOT NULL,
   image VARCHAR(255) NOT NULL,
-  year  VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
   console VARCHAR(255)NOT NULL,
   genre_id INT NOT NULL,
   CONSTRAINT fk_game_genre
@@ -23,8 +23,14 @@ INSERT INTO genre(label) VALUES ('Action');
 INSERT INTO genre(label) VALUES ('Fighting');
 INSERT INTO genre(label) VALUES ('Sport');
 
-INSERT INTO game(title, image, year, console, genre_id) VALUES ('Alex kidd in miracle world','https://images.launchbox-app.com/e9a25f89-4489-48db-a4d1-ed95fbeaef07.jpg','1986','sega master system',1);
-INSERT INTO game(title,image,year,console, genre_id) VALUES ('super mario bros','https://cdn02.nintendo-europe.com/media/images/05_packshots/games_13/nes_1/PS_NES_SuperMarioBros.jpg','1985','nintendo Nes',1);
-INSERT INTO game(title,image,year,console, genre_id) VALUES ('fatal fury special','https://www.mobygames.com/images/covers/l/42665-fatal-fury-special-neo-geo-front-cover.jpg','1993','NEO GEO',2);
-INSERT INTO game(title,image,year,console, genre_id) VALUES ('soccer brawl','https://romspure.cc/wp-content/uploads/2020/05/1589158208-b34c127a-9098-47ce-9d74-aa4c0c91c121.jpg','1992','NEO GEO',3);
+INSERT INTO game(title, image, year, console, genre_id) VALUES ('Alex kidd in miracle world','https://images.launchbox-app.com/e9a25f89-4489-48db-a4d1-ed95fbeaef07.jpg',1986,'sega master system',1);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('super mario bros','https://cdn02.nintendo-europe.com/media/images/05_packshots/games_13/nes_1/PS_NES_SuperMarioBros.jpg',1985,'nintendo Nes',1);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('fatal fury special','https://www.mobygames.com/images/covers/l/42665-fatal-fury-special-neo-geo-front-cover.jpg',1993,'NEO GEO',2);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('soccer brawl','https://romspure.cc/wp-content/uploads/2020/05/1589158208-b34c127a-9098-47ce-9d74-aa4c0c91c121.jpg',1992,'NEO GEO',3);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('world heroes 2 jet','https://cdn.mobygames.com/covers/657987-world-heroes-2-jet-neo-geo-front-cover.jpg',1994,'NEO GEO',2);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('mortal kombat','http://4.bp.blogspot.com/_ip2NCacCsrU/SrWWzwtFYpI/AAAAAAAAA3g/ocVjtMxuZRk/s400/600full-mortal-kombat-cover.jpg',1993,'megadrive',2);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('quackshot','http://www.gamemuseum.es/wp-content/uploads/2017/11/Portada-768x1046.jpg',1991,'megadrive',1);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('mega man','https://www.gamexchange.co.uk/images/pictures/products/md/md305-(product-zoom).jpg?v=3aeed0c4',1994,'megadrive',1);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('the king of fighters 94',"https://upload.wikimedia.org/wikipedia/en/e/e4/The_King_of_Fighters_'94_arcade_flyer.jpg",1994,'NEO GEO',2);
+INSERT INTO game(title,image,year,console, genre_id) VALUES ('aladdin',"https://i.pinimg.com/originals/b7/fb/8d/b7fb8dcb85136aad58bb417e23899799.jpg",1993,'megadrive',1);
 
