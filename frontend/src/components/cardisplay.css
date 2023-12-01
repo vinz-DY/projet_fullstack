@@ -29,6 +29,6 @@ h3 {
 .One:hover {
   transform: scale(1.05);
   transition: transform 0.4s ease;
-  border: 1px solid #f98919;
+  border: 1px solid #f9d719;
   cursor: pointer;
 }
