@@ -8,7 +8,7 @@ function OneCard() {
   return (
     <div className="BigCtn">
       <div className="OneCardCtn">
-        <div>
+        <div className="imgCtn">
           <img className="OneImg" src={oneCard.image} alt="" />
         </div>
         <div className="content">
