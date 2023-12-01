@@ -33,11 +33,11 @@ router.get("/games/:id", (req, res) => {
 
   client
     .query(query, [gameId])
-    .then((result) => {
-      if (result[0].length === 0) {
+    .then(([game]) => {
+      if (game[0].length === 0) {
         res.status(404).json({ message: "Aucun jeu trouvé" });
       } else {
-        res.status(200).json(result[0][0]);
+        res.status(200).json(game[0]);
       }
     })
     .catch((err) => {

@@ -6,7 +6,7 @@ function CardDisplay({ game }) {
   return (
     <Link to={`/games/${game.id}`}>
       <div className="One">
-        <img className="gamepics" src={game.image} alt="" />
+        <img className="gamepics" src={game.image} alt={game.title} />
       </div>
     </Link>
   );
