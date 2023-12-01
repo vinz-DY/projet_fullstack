@@ -6,7 +6,6 @@ function CardDisplay({ game }) {
     <div>
       <div className="One">
         <img className="gamepics" src={game.image} alt="" />
-        <h3>{game.title}</h3>
       </div>
     </div>
   );
