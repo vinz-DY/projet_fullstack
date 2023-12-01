@@ -1,5 +1,6 @@
 .gamepics {
-  width: 10rem;
+  height: 100%;
+  border-radius: 0px 40px 0px 0px;
 }
 
 .Ctn {
@@ -9,11 +10,25 @@
 
 .One {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  box-shadow: -1px -1px 13px 3px rgba(0, 0, 0, 0.28);
+  box-shadow: -1px -1px 13px 3px rgba(235, 222, 238, 0.35);
+  margin-top: 2rem;
+  height: 15rem;
+  position: relative;
+  border-radius: 0px 40px 0px 0px;
+  border: solid 1px rgb(0, 0, 0);
+  transition: transform 0.4s ease;
 }
 
 h3 {
   font-size: 0.8rem;
+}
+
+.One:hover {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+  border: 1px solid #f98919;
+  cursor: pointer;
 }
