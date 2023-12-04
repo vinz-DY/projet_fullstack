@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function GameForm() {
@@ -7,22 +7,31 @@ function GameForm() {
     image: "",
     year: "",
     console: "",
-    genre: "",
+    genre_id: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  useEffect(() => {
     console.info(formData);
+  }, [formData]);
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      const updatedFormData = {
+        ...prevFormData,
+        [e.target.name]: e.target.value,
+      };
+      return updatedFormData;
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/games", formData);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/games`,
+        formData
+      );
       console.info("Nouveau jeu ajouté:", response.data);
     } catch (error) {
       console.error("Erreur lors de l'ajout du jeu:", error);
@@ -42,7 +51,7 @@ function GameForm() {
       </label>
       <br />
       <label>
-        image:
+        Image:
         <input
           type="text"
           name="image"
@@ -73,10 +82,15 @@ function GameForm() {
       <br />
       <label>
         Genre:
-        <select name="label" value={formData.label} onChange={handleChange}>
-          <option value="Action">Action</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Sport">Sport</option>
+        <select
+          name="genre_id"
+          value={formData.genre_id}
+          onChange={handleChange}
+        >
+          <option value="0">Choose</option>
+          <option value="1">Action</option>
+          <option value="2">Fighting</option>
+          <option value="3">Sport</option>
         </select>
       </label>
       <br />
