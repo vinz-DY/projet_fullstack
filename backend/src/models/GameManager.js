@@ -12,8 +12,8 @@ class GameManager extends AbstractManager {
   async create(game) {
     // Execute the SQL INSERT query to add a new game to the "game" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [game.title]
+      `insert into ${this.table} (title, image, year, console, genre_id) values (?, ? , ? , ? , ?)`,
+      [game.title, game.image, game.year, game.console, game.genre_id]
     );
 
     // Return the ID of the newly inserted game
