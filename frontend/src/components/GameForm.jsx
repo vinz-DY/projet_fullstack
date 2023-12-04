@@ -87,6 +87,7 @@ function GameForm() {
           value={formData.genre_id}
           onChange={handleChange}
         >
+          <option value="0">Choose</option>
           <option value="1">Action</option>
           <option value="2">Fighting</option>
           <option value="3">Sport</option>
