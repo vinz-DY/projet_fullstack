@@ -4,6 +4,9 @@ import axios from "axios";
 function GameForm() {
   const [formData, setFormData] = useState({
     title: "",
+    image: "",
+    year: "",
+    console: "",
     genre: "",
   });
 
@@ -12,6 +15,7 @@ function GameForm() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    console.info(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -20,7 +24,6 @@ function GameForm() {
     try {
       const response = await axios.post("/api/games", formData);
       console.info("Nouveau jeu ajouté:", response.data);
-      // Ajoutez ici la logique de redirection ou de mise à jour de l'interface utilisateur
     } catch (error) {
       console.error("Erreur lors de l'ajout du jeu:", error);
     }
@@ -29,7 +32,7 @@ function GameForm() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Titre:
+        Titre du jeu:
         <input
           type="text"
           name="title"
@@ -39,13 +42,42 @@ function GameForm() {
       </label>
       <br />
       <label>
-        Genre:
+        image:
         <input
           type="text"
-          name="genre"
-          value={formData.genre}
+          name="image"
+          value={formData.image}
           onChange={handleChange}
         />
+      </label>
+      <br />
+      <label>
+        Année:
+        <input
+          type="text"
+          name="year"
+          value={formData.year}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Console:
+        <input
+          type="text"
+          name="console"
+          value={formData.console}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Genre:
+        <select name="label" value={formData.label} onChange={handleChange}>
+          <option value="Action">Action</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Sport">Sport</option>
+        </select>
       </label>
       <br />
       <button type="submit">Ajouter</button>
