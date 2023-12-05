@@ -10,9 +10,24 @@ function GameForm() {
     genre_id: null,
   });
 
+  const getGenres = async () => {
+    try {
+      const myGenres = await axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/genres`)
+        .then((res) => res.data);
+      console.info(myGenres);
+    } catch (error) {
+      console.error("Erreur ajout genre", error);
+    }
+  };
+
   useEffect(() => {
     console.info(formData);
   }, [formData]);
+
+  useEffect(() => {
+    getGenres();
+  }, []);
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
