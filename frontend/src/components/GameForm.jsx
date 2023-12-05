@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./gameForm.css";
 
 function GameForm() {
   const [formData, setFormData] = useState({
@@ -56,59 +57,69 @@ function GameForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Titre du jeu:
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Année:
-        <input
-          type="text"
-          name="year"
-          value={formData.year}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Console:
-        <input
-          type="text"
-          name="console"
-          value={formData.console}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Genre:
-        <select name="genre_id" onChange={handleChange} required>
-          <option value={null}>Choose</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.id}>
-              {genre.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <button type="submit">Ajouter</button>
+      <h2 className="AddG">Add your own game</h2>
+      <div className="formCtn">
+        <div className="inputG">
+          <label>
+            <p className="formP">Titre:</p>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="inputG">
+          <label>
+            <p className="formP">Image:</p>
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="inputG">
+          <label>
+            <p className="formP">Date de sortie:</p>
+            <input
+              type="text"
+              name="year"
+              value={formData.year}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="inputG">
+          <label>
+            <p className="formP">Console:</p>
+            <input
+              type="text"
+              name="console"
+              value={formData.console}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <p className="formP">Genre</p>
+            <select name="genre_id" onChange={handleChange} required>
+              <option value={null}>choisi ton style</option>
+              {genres.map((genre) => (
+                <option key={genre.id} value={genre.id}>
+                  {genre.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <button className="buttonA" type="submit">
+          Ajouter
+        </button>
+      </div>
     </form>
   );
 }
