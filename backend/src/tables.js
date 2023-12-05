@@ -5,10 +5,12 @@
 // Import the manager modules responsible for handling data operations on the tables
 const ItemManager = require("./models/ItemManager");
 const GameManager = require("./models/GameManager");
+const GenreManager = require("./models/GenreManager");
 
 const managers = [
   ItemManager,
   GameManager,
+  GenreManager,
 
   // Add other managers here
 ];
