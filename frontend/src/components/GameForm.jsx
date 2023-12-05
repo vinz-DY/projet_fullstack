@@ -5,9 +5,9 @@ function GameForm() {
   const [formData, setFormData] = useState({
     title: "",
     image: "",
-    year: "",
+    year: null,
     console: "",
-    genre_id: "",
+    genre_id: null,
   });
 
   useEffect(() => {
@@ -87,10 +87,10 @@ function GameForm() {
           value={formData.genre_id}
           onChange={handleChange}
         >
-          <option value="0">Choose</option>
-          <option value="1">Action</option>
-          <option value="2">Fighting</option>
-          <option value="3">Sport</option>
+          <option value="">Choose</option>
+          <option value={1}>Action</option>
+          <option value={2}>Fighting</option>
+          <option value={3}>Sport</option>
         </select>
       </label>
       <br />
