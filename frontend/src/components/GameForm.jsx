@@ -9,13 +9,14 @@ function GameForm() {
     console: "",
     genre_id: null,
   });
+  const [genres, setGenres] = useState([]);
 
   const getGenres = async () => {
     try {
       const myGenres = await axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/genres`)
         .then((res) => res.data);
-      console.info(myGenres);
+      setGenres(myGenres);
     } catch (error) {
       console.error("Erreur ajout genre", error);
     }
@@ -97,15 +98,13 @@ function GameForm() {
       <br />
       <label>
         Genre:
-        <select
-          name="genre_id"
-          value={formData.genre_id}
-          onChange={handleChange}
-        >
+        <select name="genre_id" onChange={handleChange} required>
           <option value={null}>Choose</option>
-          <option value={1}>Action</option>
-          <option value={2}>Fighting</option>
-          <option value={3}>Sport</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.label}
+            </option>
+          ))}
         </select>
       </label>
       <br />
