@@ -54,4 +54,8 @@ router.get("/games/:id", gameControllers.read);
 // Route to add a new item
 router.post("/games", gameControllers.add);
 
+const genreControllers = require("./controllers/genreControllers");
+
+router.get("/genres", genreControllers.browse);
+
 module.exports = router;
