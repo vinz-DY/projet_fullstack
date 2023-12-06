@@ -55,6 +55,27 @@ const add = async (req, res, next) => {
 };
 
 // The D of BREAD - Destroy (Delete) operation
+const destroy = async (req, res, next) => {
+  // Extract the gameId data from the request body
+  const gameId = req.params.id;
+
+  try {
+    // delete the game into the database
+    const deleteId = await tables.game.delete(gameId);
+
+    // Check the result of the deletion
+    if (deleteId.message === "Delete successful") {
+      // Respond with HTTP 200 (OK) and a success message
+      res.status(200).json({ message: "Delete successful" });
+    } else {
+      // Respond with HTTP 404 (Not Found) if the game was not found
+      res.status(404).json({ message: "Game not found or has dependencies" });
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 // This operation is not yet implemented
 
 // Ready to export the controller functions
@@ -63,5 +84,5 @@ module.exports = {
   read,
   // edit,
   add,
-  // destroy,
+  destroy,
 };
