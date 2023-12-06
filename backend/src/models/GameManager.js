@@ -25,7 +25,7 @@ class GameManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific game by its ID
     const [rows] = await this.database.query(
-      `SELECT game.*, genre.* from ${this.table} LEFT JOIN genre ON game.genre_id = genre.id
+      `SELECT game.*, genre.label as genre_label from ${this.table} LEFT JOIN genre ON game.genre_id = genre.id
     WHERE game.id = ?
   `,
       [id]
@@ -51,6 +51,25 @@ class GameManager extends AbstractManager {
   // }
 
   // The D of CRUD - Delete operation
+  async delete(id) {
+    try {
+      // Execute the SQL DELETE query to delete a specific game by its ID
+      const result = await this.database.query(
+        `DELETE FROM ${this.table} WHERE id = ?`,
+        [id]
+      );
+
+      // Check the affectedRows property to verify if the deletion was successful
+      if (result && result.affectedRows > 0)
+        return { message: "Delete successful" };
+      return { message: "Game not found" };
+    } catch (error) {
+      // Handle the error, log it, etc.
+      console.error("Error deleting game:", error.message);
+      return { message: "Error deleting game" };
+    }
+  }
+
   // TODO: Implement the delete operation to remove an game by its ID
 
   // async delete(id) {

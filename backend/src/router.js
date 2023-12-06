@@ -58,4 +58,6 @@ const genreControllers = require("./controllers/genreControllers");
 
 router.get("/genres", genreControllers.browse);
 
+router.delete("/games/:id", gameControllers.destroy);
+
 module.exports = router;
