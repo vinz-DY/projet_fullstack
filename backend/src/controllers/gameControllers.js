@@ -61,16 +61,10 @@ const destroy = async (req, res, next) => {
 
   try {
     // delete the game into the database
-    const deleteId = await tables.game.delete(gameId);
+    await tables.game.delete(gameId);
 
     // Check the result of the deletion
-    if (deleteId.message === "Delete successful") {
-      // Respond with HTTP 200 (OK) and a success message
-      res.status(200).json({ message: "Delete successful" });
-    } else {
-      // Respond with HTTP 404 (Not Found) if the game was not found
-      res.status(404).json({ message: "Game not found or has dependencies" });
-    }
+    res.sendStatus(204);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

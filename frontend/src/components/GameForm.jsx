@@ -73,6 +73,7 @@ function GameForm() {
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/games/${id}`
       );
+      getGames();
       console.info("Nouveau jeu effacé:", response.data);
     } catch (error) {
       console.error("Erreur lors de la supression du jeu:", error);
