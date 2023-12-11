@@ -68,6 +68,17 @@ function GameForm() {
     }
   };
 
+  const deleteGame = async (id) => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/games/${id}`
+      );
+      console.info("Nouveau jeu effacé:", response.data);
+    } catch (error) {
+      console.error("Erreur lors de la supression du jeu:", error);
+    }
+  };
+
   return (
     <div className="FormBigCtn">
       <form onSubmit={handleSubmit}>
@@ -146,6 +157,7 @@ function GameForm() {
               <th>Date</th>
               <th>Console</th>
               <th>Genre</th>
+              <th>Modify</th>
             </tr>
           </thead>
           <tbody>
@@ -154,10 +166,28 @@ function GameForm() {
                 <tr key={game.id}>
                   <td>{game.id}</td>
                   <td>{game.title}</td>
-                  <td>{game.image}</td>
+                  <td>
+                    <img
+                      className="imgList"
+                      src={game.image}
+                      alt="cover game"
+                    />
+                  </td>
                   <td>{game.year}</td>
                   <td>{game.console}</td>
-                  <td>{game.genre_id}</td>
+                  <td>{game.genre_label}</td>
+                  <td>
+                    <button
+                      className="dpButton"
+                      type="button"
+                      onClick={() => deleteGame(game.id)}
+                    >
+                      Delete
+                    </button>
+                    <button className="dpButton" type="button">
+                      Put
+                    </button>
+                  </td>
                 </tr>
               );
             })}

@@ -37,7 +37,10 @@ class GameManager extends AbstractManager {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all games from the "game" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database
+      .query(`SELECT game.*, genre.label as genre_label 
+         FROM ${this.table} 
+         LEFT JOIN genre ON game.genre_id = genre.id`);
 
     // Return the array of games
     return rows;
