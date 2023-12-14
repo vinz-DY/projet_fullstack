@@ -35,8 +35,23 @@ const read = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
 
+// This operation is not yet implemented
+const edit = async (req, res, next) => {
+  // Extract the game data from the request body
+  const game = req.body;
+
+  try {
+    await tables.game.update(req.params.id, game);
+    // Insert the game into the database
+
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted game
+    res.sendStatus(204);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   // Extract the game data from the request body
@@ -76,7 +91,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
   destroy,
 };

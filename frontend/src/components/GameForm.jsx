@@ -45,13 +45,22 @@ function GameForm() {
   }, []);
 
   const handleChange = (e) => {
-    setFormData((prevFormData) => {
-      const updatedFormData = {
+    if (e.target.name === "genre_id") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [e.target.name]: +e.target.value,
+      }));
+    } else if (e.target.name === "year") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [e.target.name]: +e.target.value,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
         ...prevFormData,
         [e.target.name]: e.target.value,
-      };
-      return updatedFormData;
-    });
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -62,6 +71,7 @@ function GameForm() {
         `${import.meta.env.VITE_BACKEND_URL}/api/games`,
         formData
       );
+      getGames();
       console.info("Nouveau jeu ajouté:", response.data);
     } catch (error) {
       console.error("Erreur lors de l'ajout du jeu:", error);
@@ -80,9 +90,34 @@ function GameForm() {
     }
   };
 
+  const putGame = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/games/${formData.id}`,
+        formData
+      );
+      getGames();
+    } catch (error) {
+      console.error("Erreur de la modification du jeu:", error);
+    }
+  };
+
+  const loadGame = (game) => {
+    setFormData(game);
+  };
+
+  const handleRequest = (e) => {
+    if (formData.id) {
+      putGame(e);
+    } else {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <div className="FormBigCtn">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRequest}>
         <h2 className="AddG">Add your own game</h2>
         <div className="formCtn">
           <div className="inputG">
@@ -132,7 +167,12 @@ function GameForm() {
           <div>
             <label>
               <p className="formP">Genre</p>
-              <select name="genre_id" onChange={handleChange} required>
+              <select
+                name="genre_id"
+                onChange={handleChange}
+                required
+                value={formData.genre_id}
+              >
                 <option value={null}>choisi ton style</option>
                 {genres.map((genre) => (
                   <option key={genre.id} value={genre.id}>
@@ -143,7 +183,7 @@ function GameForm() {
             </label>
           </div>
           <button className="buttonA" type="submit">
-            Ajouter
+            {formData.id ? "Modifier" : "Ajouter"}
           </button>
         </div>
       </form>
@@ -185,7 +225,11 @@ function GameForm() {
                     >
                       Delete
                     </button>
-                    <button className="dpButton" type="button">
+                    <button
+                      className="dpButton"
+                      type="button"
+                      onClick={() => loadGame(game)}
+                    >
                       Put
                     </button>
                   </td>
