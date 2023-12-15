@@ -19,9 +19,17 @@ create table game (
 );
 
 
-INSERT INTO genre(label) VALUES ('Action');
-INSERT INTO genre(label) VALUES ('Fighting');
+INSERT INTO genre(label) VALUES ('Plateformer');
+INSERT INTO genre(label) VALUES ('VS Fighting');
 INSERT INTO genre(label) VALUES ('Sport');
+INSERT INTO genre(label) VALUES ("Beat'em All");
+INSERT INTO genre(label) VALUES ("Shoot'em Up");
+INSERT INTO genre(label) VALUES ("Action");
+INSERT INTO genre(label) VALUES ("Racing");
+INSERT INTO genre(label) VALUES ("Motion Video");
+INSERT INTO genre(label) VALUES ("Adventure");
+INSERT INTO genre(label) VALUES ("RPG");
+INSERT INTO genre(label) VALUES ("Puzzle");
 
 INSERT INTO game(title, image, year, console, genre_id) VALUES ('Alex kidd in miracle world','https://images.launchbox-app.com/e9a25f89-4489-48db-a4d1-ed95fbeaef07.jpg',1986,'sega master system',1);
 INSERT INTO game(title,image,year,console, genre_id) VALUES ('super mario bros','https://cdn02.nintendo-europe.com/media/images/05_packshots/games_13/nes_1/PS_NES_SuperMarioBros.jpg',1985,'nintendo Nes',1);

@@ -98,6 +98,14 @@ function GameForm() {
         formData
       );
       getGames();
+      console.info("jeu modifié");
+      setFormData({
+        title: "",
+        image: "",
+        year: "",
+        console: "",
+        genre_id: "",
+      });
     } catch (error) {
       console.error("Erreur de la modification du jeu:", error);
     }
@@ -122,7 +130,7 @@ function GameForm() {
         <div className="formCtn">
           <div className="inputG">
             <label>
-              <p className="formP">Titre:</p>
+              <p className="formP">Title:</p>
               <input
                 type="text"
                 name="title"
@@ -144,7 +152,7 @@ function GameForm() {
           </div>
           <div className="inputG">
             <label>
-              <p className="formP">Date de sortie:</p>
+              <p className="formP">Release date:</p>
               <input
                 type="text"
                 name="year"
@@ -155,7 +163,7 @@ function GameForm() {
           </div>
           <div className="inputG">
             <label>
-              <p className="formP">Console:</p>
+              <p className="formP">System:</p>
               <input
                 type="text"
                 name="console"
@@ -166,7 +174,7 @@ function GameForm() {
           </div>
           <div>
             <label>
-              <p className="formP">Genre</p>
+              <p className="formP">Style</p>
               <select
                 name="genre_id"
                 onChange={handleChange}
@@ -192,12 +200,12 @@ function GameForm() {
         <table>
           <thead>
             <tr>
-              <th>id</th>
-              <th>Titre</th>
+              <th>Place</th>
+              <th>Title</th>
               <th>Image</th>
               <th>Date</th>
-              <th>Console</th>
-              <th>Genre</th>
+              <th>System</th>
+              <th>Style</th>
               <th>Modify</th>
             </tr>
           </thead>
@@ -217,7 +225,7 @@ function GameForm() {
                   <td>{game.year}</td>
                   <td>{game.console}</td>
                   <td>{game.genre_label}</td>
-                  <td>
+                  <td className="buttondelput">
                     <button
                       className="dpButton"
                       type="button"
@@ -230,7 +238,7 @@ function GameForm() {
                       type="button"
                       onClick={() => loadGame(game)}
                     >
-                      Put
+                      Load
                     </button>
                   </td>
                 </tr>

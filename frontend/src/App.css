@@ -9,3 +9,42 @@ body {
   background-color: #251e2e;
   background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23645779' fill-opacity='0.27'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
+
+.appCtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px red;
+}
+.titreA {
+  font-size: 3rem;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background-color: rgb(86, 78, 108);
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+
+.buttonManage {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  width: 8rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: 1s ease;
+  border: none;
+}
+
+.buttonManage:hover {
+  font-size: 1.2rem;
+  transform: scale(1.2);
+  transition: 1s ease;
+  background-color: rgb(255, 183, 0);
+  color: white;
+  outline: 2px solid rgb(255, 255, 255);
+}
