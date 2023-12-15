@@ -116,6 +116,10 @@ h2 {
     border-radius: 2rem;
     padding: 2rem;
   }
+  .searchbar {
+    padding: 1rem;
+    width: 16rem;
+  }
 }
 
 @media only screen and (max-width: 730px) {
@@ -190,4 +194,8 @@ table {
 
 td {
   padding-left: 2rem;
+}
+
+.searchCtn {
+  width: 100%;
 }

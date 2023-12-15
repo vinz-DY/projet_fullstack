@@ -12,6 +12,7 @@ function GameForm() {
   });
   const [genres, setGenres] = useState([]);
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getGenres = async () => {
     try {
@@ -123,131 +124,148 @@ function GameForm() {
     }
   };
 
+  const filteredGames = games.filter((game) =>
+    game.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="FormBigCtn">
-      <form onSubmit={handleRequest}>
-        <h2 className="AddG">Add your own game</h2>
-        <div className="formCtn">
-          <div className="inputG">
-            <label>
-              <p className="formP">Title:</p>
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="inputG">
-            <label>
-              <p className="formP">Image:</p>
-              <input
-                type="text"
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="inputG">
-            <label>
-              <p className="formP">Release date:</p>
-              <input
-                type="text"
-                name="year"
-                value={formData.year}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="inputG">
-            <label>
-              <p className="formP">System:</p>
-              <input
-                type="text"
-                name="console"
-                value={formData.console}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <p className="formP">Style</p>
-              <select
-                name="genre_id"
-                onChange={handleChange}
-                required
-                value={formData.genre_id}
-              >
-                <option value={null}>choisi ton style</option>
-                {genres.map((genre) => (
-                  <option key={genre.id} value={genre.id}>
-                    {genre.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <button className="buttonA" type="submit">
-            {formData.id ? "Modifier" : "Ajouter"}
-          </button>
+    <>
+      <div className="searchCtn">
+        <div className="search">
+          <input
+            className="searchbar"
+            type="text"
+            placeholder="Rechercher un jeu..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-      </form>
-      <section className="sectionCtn">
-        <h2>Games</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Place</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Date</th>
-              <th>System</th>
-              <th>Style</th>
-              <th>Modify</th>
-            </tr>
-          </thead>
-          <tbody>
-            {games.map((game) => {
-              return (
-                <tr key={game.id}>
-                  <td>{game.id}</td>
-                  <td>{game.title}</td>
-                  <td>
-                    <img
-                      className="imgList"
-                      src={game.image}
-                      alt="cover game"
-                    />
-                  </td>
-                  <td>{game.year}</td>
-                  <td>{game.console}</td>
-                  <td>{game.genre_label}</td>
-                  <td className="buttondelput">
-                    <button
-                      className="dpButton"
-                      type="button"
-                      onClick={() => deleteGame(game.id)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className="dpButton"
-                      type="button"
-                      onClick={() => loadGame(game)}
-                    >
-                      Load
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </section>
-    </div>
+      </div>
+      <div className="FormBigCtn">
+        <form onSubmit={handleRequest}>
+          <h2 className="AddG">Add your own game</h2>
+          <div className="formCtn">
+            <div className="inputG">
+              <label>
+                <p className="formP">Title:</p>
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="inputG">
+              <label>
+                <p className="formP">Image:</p>
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="inputG">
+              <label>
+                <p className="formP">Release date:</p>
+                <input
+                  type="text"
+                  name="year"
+                  value={formData.year}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="inputG">
+              <label>
+                <p className="formP">System:</p>
+                <input
+                  type="text"
+                  name="console"
+                  value={formData.console}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <p className="formP">Style</p>
+                <select
+                  name="genre_id"
+                  onChange={handleChange}
+                  required
+                  value={formData.genre_id}
+                >
+                  <option value={null}>choisi ton style</option>
+                  {genres.map((genre) => (
+                    <option key={genre.id} value={genre.id}>
+                      {genre.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <button className="buttonA" type="submit">
+              {formData.id ? "Modifier" : "Ajouter"}
+            </button>
+          </div>
+        </form>
+        <section className="sectionCtn">
+          <h2>Games</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Date</th>
+                <th>System</th>
+                <th>Style</th>
+                <th>Modify</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredGames.map((game) => {
+                return (
+                  <tr key={game.id}>
+                    <td>{game.id}</td>
+                    <td>{game.title}</td>
+                    <td>
+                      <img
+                        className="imgList"
+                        src={game.image}
+                        alt="cover game"
+                      />
+                    </td>
+                    <td>{game.year}</td>
+                    <td>{game.console}</td>
+                    <td>{game.genre_label}</td>
+                    <td className="buttondelput">
+                      <button
+                        className="dpButton"
+                        type="button"
+                        onClick={() => deleteGame(game.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="dpButton"
+                        type="button"
+                        onClick={() => loadGame(game)}
+                      >
+                        Load
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </>
   );
 }
 
