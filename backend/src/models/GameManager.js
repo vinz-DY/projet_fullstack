@@ -50,6 +50,16 @@ class GameManager extends AbstractManager {
   // TODO: Implement the update operation to modify an existing game
 
   // async update(game) {
+  async update(id, game) {
+    // Execute the SQL INSERT query to add a new game to the "game" table
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET title = ?, image = ?, year = ?, console = ?, genre_id= ? WHERE id = ?`,
+      [game.title, game.image, game.year, game.console, game.genre_id, id]
+    );
+
+    // Return the ID of the newly inserted game
+    return result.insertId;
+  }
   //   ...
   // }
 

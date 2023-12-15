@@ -24,6 +24,8 @@ router.get("/games", gameControllers.browse);
 // });
 
 router.get("/games/:id", gameControllers.read);
+
+router.put("/games/:id", gameControllers.edit);
 // => {
 //   const gameId = req.params.id;
 //   const query = `
