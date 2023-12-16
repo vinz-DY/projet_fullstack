@@ -7,6 +7,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import PageGameOne from "./pages/PageGameOne";
 import Admin from "./pages/Admin";
+import Vinylo from "./pages/Vinylo";
+import Advinylo from "./pages/Advinylo";
+import PageVinylOne from "./pages/PageVinylOne";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +33,32 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: "/admin",
+    path: "/adminGames",
     element: <Admin />,
+  },
+  {
+    path: "/vinyles",
+    element: <Vinylo />,
+    loader: () => {
+      return axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/discs`)
+        .then((res) => res.data)
+        .catch((err) => console.error(err));
+    },
+  },
+  {
+    path: "/discs/:id",
+    element: <PageVinylOne />,
+    loader: ({ params }) => {
+      return axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/discs/${params.id}`)
+        .then((res) => res.data)
+        .catch((err) => console.error(err));
+    },
+  },
+  {
+    path: "/adminVinyles",
+    element: <Advinylo />,
   },
 ]);
 

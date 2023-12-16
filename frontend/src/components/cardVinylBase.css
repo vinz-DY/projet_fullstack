@@ -1,0 +1,39 @@
+.discpics {
+  height: 100%;
+  border-radius: 0px 40px 0px 0px;
+}
+
+.Ctn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.One {
+  box-shadow: -1px -1px 13px 3px rgba(235, 222, 238, 0.35);
+  margin-top: 2rem;
+  height: 15rem;
+  border-radius: 0px 40px 0px 0px;
+  border: solid 1px rgb(0, 0, 0);
+  transition: transform 0.4s ease;
+}
+
+.One:hover {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+  border: 1px solid #f9d719;
+  cursor: pointer;
+}
+
+.searchCtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.searchbar {
+  width: 30rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
