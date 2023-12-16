@@ -4,6 +4,25 @@ create table genre (
   label VARCHAR(255) NOT NULL
 );
 
+create table musicStyle (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  label VARCHAR(255) NOT NULL
+);
+
+
+
+create table disc (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  artist VARCHAR(255)NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
+  color VARCHAR(100) NOT NULL,
+  musicStyle_id INT NOT NULL,
+  CONSTRAINT fk_disc_musicStyle
+  FOREIGN KEY (musicStyle_id)
+  REFERENCES musicStyle(id)
+);
 
 
 create table game (
@@ -17,6 +36,21 @@ create table game (
   FOREIGN KEY (genre_id)
   REFERENCES genre(id)
 );
+
+INSERT INTO musicStyle(label) VALUES ('Rock');
+INSERT INTO musicStyle(label) VALUES ('Pop');
+INSERT INTO musicStyle(label) VALUES ('Pop-Rock');
+INSERT INTO musicStyle(label) VALUES ('Rap');
+INSERT INTO musicStyle(label) VALUES ('Motown');
+INSERT INTO musicStyle(label) VALUES ('SoundTrack');
+INSERT INTO musicStyle(label) VALUES ('Funck');
+INSERT INTO musicStyle(label) VALUES ('80s');
+
+
+INSERT INTO disc(artist, title, image, year, color, musicStyle_id) VALUES ('placebo',"without you i'm nothing","https://www.srcvinyl.com/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/p/l/placebo_without_coverar_3000dpi300rgb1000169992.jpg",2015,'yellow',1);
+INSERT INTO disc(artist, title, image, year, color, musicStyle_id) VALUES ('orelsan',"civilisation","https://ladistilleriemusicale.fr/wp-content/uploads/2021/11/ab67616d0000b27358ba1ea637001f9a15e55a92-400x400.jpeg",2021,'Black',4);
+
+
 
 
 INSERT INTO genre(label) VALUES ('Plateformer');

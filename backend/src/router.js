@@ -9,6 +9,9 @@ const router = express.Router();
 
 // Import itemControllers module for handling item-related operations
 const gameControllers = require("./controllers/gameControllers");
+const discControllers = require("./controllers/discControllers");
+
+router.get("/discs", discControllers.browse);
 
 router.get("/games", gameControllers.browse);
 // => {
@@ -24,8 +27,10 @@ router.get("/games", gameControllers.browse);
 // });
 
 router.get("/games/:id", gameControllers.read);
+router.get("/discs/:id", discControllers.read);
 
 router.put("/games/:id", gameControllers.edit);
+router.put("/discs/:id", discControllers.edit);
 // => {
 //   const gameId = req.params.id;
 //   const query = `
@@ -55,11 +60,15 @@ router.put("/games/:id", gameControllers.edit);
 
 // Route to add a new item
 router.post("/games", gameControllers.add);
+router.post("/discs", discControllers.add);
 
 const genreControllers = require("./controllers/genreControllers");
+const musicStyleControllers = require("./controllers/musicStyleControllers");
 
 router.get("/genres", genreControllers.browse);
+router.get("/musicStyle", musicStyleControllers.browse);
 
 router.delete("/games/:id", gameControllers.destroy);
+router.delete("/discs/:id", discControllers.destroy);
 
 module.exports = router;
