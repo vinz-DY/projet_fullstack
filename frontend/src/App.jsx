@@ -5,10 +5,17 @@ import "./App.css";
 function App() {
   return (
     <>
-      <div className="appCtn">
-        <h1 className="titreA">My Own Games Collection</h1>
-        <Link to="/admin">
+      <h1 className="titreA">My Own Games Collection</h1>
+      <div className="collectionCtn">
+        <Link to="/vinyles">
           <button type="button" className="buttonManage">
+            My Own VinylS
+          </button>
+        </Link>
+      </div>
+      <div className="appCtn">
+        <Link to="/adminGames">
+          <button type="button" className="buttonManages">
             manage Games
           </button>
         </Link>
