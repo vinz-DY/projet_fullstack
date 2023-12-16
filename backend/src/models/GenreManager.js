@@ -12,8 +12,8 @@ class GenreManager extends AbstractManager {
   async create(genre) {
     // Execute the SQL INSERT query to add a new genre to the "genre" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [genre.title]
+      `insert into ${this.table} (label) values (?)`,
+      [genre.label]
     );
 
     // Return the ID of the newly inserted genre

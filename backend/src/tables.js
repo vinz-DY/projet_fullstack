@@ -6,11 +6,13 @@
 const ItemManager = require("./models/ItemManager");
 const GameManager = require("./models/GameManager");
 const GenreManager = require("./models/GenreManager");
+const DiscManager = require("./models/DiscManager");
 
 const managers = [
   ItemManager,
   GameManager,
   GenreManager,
+  DiscManager,
 
   // Add other managers here
 ];
