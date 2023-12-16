@@ -80,14 +80,23 @@ function GameForm() {
   };
 
   const deleteGame = async (id) => {
-    try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/api/games/${id}`
-      );
-      getGames();
-      console.info("Nouveau jeu effacé:", response.data);
-    } catch (error) {
-      console.error("Erreur lors de la supression du jeu:", error);
+    // Display a confirmation dialog
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this game?"
+    );
+
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/api/games/${id}`
+        );
+        getGames();
+        console.info("Game deleted:", response.data);
+      } catch (error) {
+        console.error("Error deleting the game:", error);
+      }
+    } else {
+      console.log("Deletion canceled.");
     }
   };
 
