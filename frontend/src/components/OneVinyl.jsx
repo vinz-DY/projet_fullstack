@@ -12,10 +12,11 @@ function OneVinyl() {
             <img className="OneImg" src={oneCardVinyl.image} alt="" />
           </div>
           <div className="content">
-            <h3>{oneCardVinyl.title}</h3>
+            <h3>{oneCardVinyl.artist}</h3>
+            <p>{oneCardVinyl.title}</p>
             <p>{oneCardVinyl.year}</p>
-            <p>{oneCardVinyl.console}</p>
-            <p>{oneCardVinyl.genre_label}</p>
+            <p>{oneCardVinyl.musicStyle_label}</p>
+            <p>vinyl color : {oneCardVinyl.color}</p>
             <Link to="/vinyles">
               <button className="button" type="button">
                 Back in Vinyls
