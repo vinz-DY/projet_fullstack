@@ -66,7 +66,7 @@ const genreControllers = require("./controllers/genreControllers");
 const musicStyleControllers = require("./controllers/musicStyleControllers");
 
 router.get("/genres", genreControllers.browse);
-router.get("/musicStyle", musicStyleControllers.browse);
+router.get("/musicStyles", musicStyleControllers.browse);
 
 router.delete("/games/:id", gameControllers.destroy);
 router.delete("/discs/:id", discControllers.destroy);

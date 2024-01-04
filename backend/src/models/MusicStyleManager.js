@@ -12,8 +12,8 @@ class musicStyleManager extends AbstractManager {
   async create(musicStyle) {
     // Execute the SQL INSERT query to add a new musicStyle to the "musicStyle" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [musicStyle.title]
+      `insert into ${this.table} (label) values (?)`,
+      [musicStyle.label]
     );
 
     // Return the ID of the newly inserted musicStyle
