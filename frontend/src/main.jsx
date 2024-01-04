@@ -10,11 +10,22 @@ import Admin from "./pages/Admin";
 import Vinylo from "./pages/Vinylo";
 import Advinylo from "./pages/Advinylo";
 import PageVinylOne from "./pages/PageVinylOne";
+import Gamespage from "./pages/Gamespage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: () => {
+      return axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/games`)
+        .then((res) => res.data)
+        .catch((err) => console.error(err));
+    },
+  },
+  {
+    path: "/games",
+    element: <Gamespage />,
     loader: () => {
       return axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/games`)

@@ -21,6 +21,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  gap: 2rem;
 }
 
 .titreA {
@@ -74,4 +75,27 @@ body {
   background-color: rgb(255, 183, 0);
   color: white;
   outline: 2px solid rgb(255, 255, 255);
+}
+
+.logoHome {
+  width: 500px;
+  border-radius: 5rem;
+  margin-top: 2rem;
+  box-shadow: 0px 17px 25px 3px rgba(0, 0, 0, 0.75);
+  transition: 1s ease;
+}
+
+.logoHome:hover {
+  width: 500px;
+  border-radius: 5rem;
+  margin-top: 4rem;
+  box-shadow: 0px 17px 25px 3px rgba(0, 0, 0, 0.75);
+  transform: scale(1.2);
+  transition: 1s ease;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,27 +1,25 @@
 import { Link } from "react-router-dom";
-import Card from "./components/Card";
 import "./App.css";
+import Logo from "./assets/logo.jpg";
 
 function App() {
   return (
     <>
-      <h1 className="titreA">My Own Games Collection</h1>
+      <h1 className="titreA">My Own 80's Collection</h1>
       <div className="collectionCtn">
         <Link to="/vinyles">
           <button type="button" className="buttonManage">
             My Own VinylS
           </button>
         </Link>
-      </div>
-      <div className="appCtn">
-        <Link to="/adminGames">
-          <button type="button" className="buttonManages">
-            manage Games
+        <Link to="/games">
+          <button type="button" className="buttonManage">
+            My Own Games
           </button>
         </Link>
       </div>
-      <div className="MyCard">
-        <Card />
+      <div className="logoContainer">
+        <img className="logoHome" src={Logo} alt="" />
       </div>
     </>
   );
