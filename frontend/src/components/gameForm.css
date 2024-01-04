@@ -195,6 +195,9 @@ table {
 td {
   padding-left: 2rem;
 }
+th {
+  padding-left: 1.4rem;
+}
 
 .searchCtn {
   width: 100%;

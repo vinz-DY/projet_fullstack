@@ -36,4 +36,22 @@
   width: 30rem;
   padding: 1rem;
   margin-bottom: 1rem;
+  transition: 1s ease;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchbar {
+    width: 25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: 1s ease;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .searchbar {
+    width: 18rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: 1s ease;
+  }
 }
