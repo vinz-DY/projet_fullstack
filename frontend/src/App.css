@@ -99,3 +99,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.contenaireB {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: 1s ease;
+}
+.contenaireB:hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(1.2);
+  transition: 1s ease;
+  gap: 1rem;
+}
+
+.iconebutton {
+  width: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
