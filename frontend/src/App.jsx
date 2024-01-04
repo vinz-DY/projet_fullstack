@@ -33,7 +33,7 @@ function App() {
           <img className="iconebutton" src={Vinyl} alt="" />
           <Link to="/vinyles">
             <button type="button" className="buttonManage">
-              My Own VinylS
+              My Own Vinyls
             </button>
           </Link>
         </div>
