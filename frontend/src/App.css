@@ -28,9 +28,10 @@ body {
   font-size: 3rem;
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "WAYNER", sans-serif;
   padding: 2rem;
   margin-bottom: 2rem;
-  background-color: rgb(86, 78, 108);
+  background-color: rgb(31, 31, 32);
   border-bottom: 1px solid white;
   width: 100%;
 }
@@ -90,14 +91,15 @@ body {
   border-radius: 5rem;
   margin-top: 4rem;
   box-shadow: 0px 17px 25px 3px rgba(0, 0, 0, 0.75);
-  transform: scale(1.2);
   transition: 1s ease;
 }
 
 .logoContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .contenaireB {
@@ -118,6 +120,19 @@ body {
 
 .iconebutton {
   width: 50px;
-  border: 1px solid white;
+  border: 0.1rem solid white;
   border-radius: 50%;
+}
+
+.play {
+  background-color: #0b0b0b;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  border: none;
 }
