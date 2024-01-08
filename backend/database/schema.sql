@@ -37,6 +37,14 @@ create table game (
   REFERENCES genre(id)
 );
 
+create table user (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+   email  VARCHAR(25) NOT NULL,
+   hashpassword VARCHAR(25) NOT NULL
+);
+
+INSERT INTO user(email, hashpassword) VALUES ('vincent@wild.com', 'turlututu');
+
 INSERT INTO musicStyle(label) VALUES ('Rock');
 INSERT INTO musicStyle(label) VALUES ('Pop');
 INSERT INTO musicStyle(label) VALUES ('Pop-Rock');
