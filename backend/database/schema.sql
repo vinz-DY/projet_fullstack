@@ -39,7 +39,7 @@ create table game (
 
 create table user (
   id INT PRIMARY KEY AUTO_INCREMENT,
-   email  VARCHAR(255) NOT NULL,
+   email  VARCHAR(255) NOT NULL UNIQUE,
    hashpassword VARCHAR(255) NOT NULL
 );
 
