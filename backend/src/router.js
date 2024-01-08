@@ -11,6 +11,7 @@ const router = express.Router();
 const gameControllers = require("./controllers/gameControllers");
 const discControllers = require("./controllers/discControllers");
 const userControllers = require("./controllers/userControllers");
+// const signupValidate = require("./validators/signupValidate");
 
 router.get("/discs", discControllers.browse);
 

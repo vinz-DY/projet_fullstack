@@ -39,8 +39,8 @@ create table game (
 
 create table user (
   id INT PRIMARY KEY AUTO_INCREMENT,
-   email  VARCHAR(25) NOT NULL,
-   hashpassword VARCHAR(25) NOT NULL
+   email  VARCHAR(255) NOT NULL,
+   hashpassword VARCHAR(255) NOT NULL
 );
 
 INSERT INTO user(email, hashpassword) VALUES ('vincent@wild.com', 'turlututu');

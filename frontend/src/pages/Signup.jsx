@@ -19,6 +19,12 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.hashpassword !== formData.confirmPassword) {
+      console.error("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users`,
