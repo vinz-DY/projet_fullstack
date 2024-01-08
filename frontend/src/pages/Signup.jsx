@@ -1,10 +1,11 @@
 import { React, useState } from "react";
+import axios from "axios";
 import "./signup.css";
 
 function Signup() {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    hashpassword: "",
     confirmPassword: "",
   });
 
@@ -16,9 +17,17 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+        formData
+      );
+      console.info("Nouvel utilisateur ajouté:", response.data);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'utilisateur:", error);
+    }
   };
 
   return (
@@ -38,8 +47,8 @@ function Signup() {
           Password
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="hashpassword"
+            value={formData.hashpassword}
             onChange={handleChange}
             required
           />
@@ -55,7 +64,9 @@ function Signup() {
           />
         </label>
         <div>
-          <button type="submit">Signup</button>
+          <button type="submit" className="play playmarg">
+            Sign'up
+          </button>
         </div>
       </form>
     </div>

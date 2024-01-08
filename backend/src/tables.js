@@ -8,6 +8,7 @@ const GameManager = require("./models/GameManager");
 const GenreManager = require("./models/GenreManager");
 const DiscManager = require("./models/DiscManager");
 const MusicStyleManager = require("./models/MusicStyleManager");
+const UserManager = require("./models/UserManager");
 
 const managers = [
   ItemManager,
@@ -15,6 +16,7 @@ const managers = [
   GenreManager,
   DiscManager,
   MusicStyleManager,
+  UserManager,
 
   // Add other managers here
 ];
