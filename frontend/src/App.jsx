@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
-import "./App.css";
 import Logo from "./assets/logo.jpg";
 import Vinyl from "./assets/vinyl.jpg";
 import Invader from "./assets/invader.png";
 import Music from "./assets/you.mp3";
+import "./App.css";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false); // État pour gérer la lecture de la musique
@@ -51,6 +51,18 @@ function App() {
         <button type="button" className="play" onClick={toggleMusic}>
           {isPlaying ? "Pause Music" : "Play Music"}
         </button>
+        <div className="signCtn">
+          <Link to="/signup">
+            <button type="button" className="play">
+              Sign'up
+            </button>
+          </Link>
+          <Link to="/signin">
+            <button type="button" className="play">
+              Sign'in
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );

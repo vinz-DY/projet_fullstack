@@ -1,0 +1,15 @@
+.signinBigContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signinCtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signinForm {
+  display: flex;
+  gap: 2rem;
+}

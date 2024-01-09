@@ -11,6 +11,8 @@ import Vinylo from "./pages/Vinylo";
 import Advinylo from "./pages/Advinylo";
 import PageVinylOne from "./pages/PageVinylOne";
 import Gamespage from "./pages/Gamespage";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         .then((res) => res.data)
         .catch((err) => console.error(err));
     },
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
   },
   {
     path: "/games",

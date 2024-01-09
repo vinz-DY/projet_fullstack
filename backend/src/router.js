@@ -10,8 +10,12 @@ const router = express.Router();
 // Import itemControllers module for handling item-related operations
 const gameControllers = require("./controllers/gameControllers");
 const discControllers = require("./controllers/discControllers");
+const userControllers = require("./controllers/userControllers");
+const validateUser = require("./validators/validateUser");
 
 router.get("/discs", discControllers.browse);
+
+router.get("/users", userControllers.browse);
 
 router.get("/games", gameControllers.browse);
 // => {
@@ -61,6 +65,7 @@ router.put("/discs/:id", discControllers.edit);
 // Route to add a new item
 router.post("/games", gameControllers.add);
 router.post("/discs", discControllers.add);
+router.post("/users", validateUser, userControllers.add);
 
 const genreControllers = require("./controllers/genreControllers");
 const musicStyleControllers = require("./controllers/musicStyleControllers");

@@ -1,0 +1,15 @@
+.signupBigContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupCtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signupForm {
+  display: flex;
+  gap: 2rem;
+}

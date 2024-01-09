@@ -153,3 +153,18 @@ body {
     transition: 1s ease;
   }
 }
+
+.signCtn {
+  display: flex;
+  gap: 1rem;
+}
+
+.playmarg {
+  margin-top: 1rem;
+  border: solid 2px white;
+}
+.playmarg:hover {
+  margin-top: 1rem;
+  background-color: white;
+  color: black;
+}
