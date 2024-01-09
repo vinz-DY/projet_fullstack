@@ -1,12 +1,11 @@
 import { React, useState } from "react";
 import axios from "axios";
-import "./signup.css";
+import "./signin.css";
 
-function Signup() {
+function signin() {
   const [formData, setFormData] = useState({
     email: "",
     hashpassword: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -20,11 +19,6 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.hashpassword !== formData.confirmPassword) {
-      console.error("Les mots de passe ne correspondent pas.");
-      return;
-    }
-
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users`,
@@ -37,9 +31,9 @@ function Signup() {
   };
 
   return (
-    <div className="signupBigContainer">
-      <form className="signupForm" onSubmit={handleSubmit}>
-        <label className="signupCtn">
+    <div className="signinBigContainer">
+      <form className="signinForm" onSubmit={handleSubmit}>
+        <label className="signinCtn">
           Email
           <input
             placeholder="Ex: mario@nintendo.com"
@@ -50,10 +44,10 @@ function Signup() {
             required
           />
         </label>
-        <label className="signupCtn">
-          New password
+        <label className="signinCtn">
+          password
           <input
-            placeholder="Be original"
+            placeholder="connection pass"
             type="password"
             name="hashpassword"
             value={formData.hashpassword}
@@ -61,20 +55,9 @@ function Signup() {
             required
           />
         </label>
-        <label className="signupCtn">
-          Confirm password
-          <input
-            placeholder="just copy"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </label>
         <div>
           <button type="submit" className="play playmarg">
-            Sign'up
+            Sign'in
           </button>
         </div>
       </form>
@@ -82,4 +65,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default signin;

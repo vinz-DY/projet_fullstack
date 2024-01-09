@@ -51,11 +51,18 @@ function App() {
         <button type="button" className="play" onClick={toggleMusic}>
           {isPlaying ? "Pause Music" : "Play Music"}
         </button>
-        <Link to="/signup">
-          <button type="button" className="play">
-            Sign'up
-          </button>
-        </Link>
+        <div className="signCtn">
+          <Link to="/signup">
+            <button type="button" className="play">
+              Sign'up
+            </button>
+          </Link>
+          <Link to="/signin">
+            <button type="button" className="play">
+              Sign'in
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );

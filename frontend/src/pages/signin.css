@@ -1,15 +1,15 @@
-.signupBigContainer {
+.signinBigContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.signupCtn {
+.signinCtn {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.signupForm {
+.signinForm {
   display: flex;
   gap: 2rem;
 }
