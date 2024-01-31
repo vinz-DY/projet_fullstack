@@ -96,9 +96,9 @@ function Signup() {
             required
           />
         </label>
-        <div>
+        <div className="buttonsignup">
           <button
-            className="play playmarg"
+            className="play playmarg viewpass"
             type="button"
             onClick={handleTogglePassword}
           >
