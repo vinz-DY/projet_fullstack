@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import axios from "axios";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import connexion from "./services/connexion";
 
 import App from "./App";
 import PageGameOne from "./pages/PageGameOne";
@@ -18,12 +17,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    loader: () => {
-      return axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/games`)
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-    },
   },
   {
     path: "/signup",
@@ -37,8 +30,8 @@ const router = createBrowserRouter([
     path: "/games",
     element: <Gamespage />,
     loader: () => {
-      return axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/games`)
+      return connexion
+        .get("/games")
         .then((res) => res.data)
         .catch((err) => console.error(err));
     },
@@ -47,8 +40,8 @@ const router = createBrowserRouter([
     path: "/games/:id",
     element: <PageGameOne />,
     loader: ({ params }) => {
-      return axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/games/${params.id}`)
+      return connexion
+        .get(`/games/${params.id}`)
         .then((res) => res.data)
         .catch((err) => console.error(err));
     },
@@ -61,8 +54,8 @@ const router = createBrowserRouter([
     path: "/vinyles",
     element: <Vinylo />,
     loader: () => {
-      return axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/discs`)
+      return connexion
+        .get("/discs")
         .then((res) => res.data)
         .catch((err) => console.error(err));
     },
@@ -71,8 +64,8 @@ const router = createBrowserRouter([
     path: "/discs/:id",
     element: <PageVinylOne />,
     loader: ({ params }) => {
-      return axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/discs/${params.id}`)
+      return connexion
+        .get(`/discs/${params.id}`)
         .then((res) => res.data)
         .catch((err) => console.error(err));
     },

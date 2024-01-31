@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import axios from "axios";
+import connexion from "../services/connexion";
 import "./signup.css";
 
 function Signup() {
@@ -26,10 +26,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
-        formData
-      );
+      const response = await connexion.post("/users", formData);
       console.info("Nouvel utilisateur ajouté:", response.data);
     } catch (error) {
       console.error("Erreur lors de l'ajout de l'utilisateur:", error);

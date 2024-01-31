@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import axios from "axios";
+import connexion from "../services/connexion";
 import "./signin.css";
 
 function signin() {
@@ -20,10 +20,7 @@ function signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-        formData
-      );
+      const response = await connexion.post("/login", formData);
       console.info("Nouvel utilisateur connecté:", response.data);
     } catch (error) {
       console.error("Erreur lors de connexion de l'utilisateur:", error);
