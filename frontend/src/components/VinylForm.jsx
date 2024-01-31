@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import connexion from "../services/connexion";
 import "./vinylForm.css";
 
 function VinylForm() {
@@ -17,8 +17,8 @@ function VinylForm() {
 
   const getmusicStyles = async () => {
     try {
-      const mymusicStyles = await axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/musicStyles`)
+      const mymusicStyles = await connexion
+        .get("/musicStyles")
         .then((res) => res.data);
       setmusicStyles(mymusicStyles);
     } catch (error) {
@@ -28,9 +28,7 @@ function VinylForm() {
 
   const getdiscs = async () => {
     try {
-      const mydiscs = await axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/discs`)
-        .then((res) => res.data);
+      const mydiscs = await connexion.get("/discs").then((res) => res.data);
       setdiscs(mydiscs);
     } catch (error) {
       console.error("Erreur get discs", error);
@@ -69,11 +67,16 @@ function VinylForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/discs`,
-        formData
-      );
+      const response = await connexion.post("/discs", formData);
       getdiscs();
+      setFormData({
+        artist: "",
+        title: "",
+        image: "",
+        year: "",
+        color: "",
+        musicStyle_id: "",
+      });
       console.info("Nouveau vinyle ajouté:", response.data);
     } catch (error) {
       console.error("Erreur lors de l'ajout du vinyle:", error);
@@ -88,9 +91,7 @@ function VinylForm() {
 
     if (confirmDelete) {
       try {
-        const response = await axios.delete(
-          `${import.meta.env.VITE_BACKEND_URL}/api/discs/${id}`
-        );
+        const response = await connexion.delete(`/discs/${id}`);
         getdiscs();
         console.info("disc deleted:", response.data);
       } catch (error) {
@@ -104,10 +105,7 @@ function VinylForm() {
   const putdisc = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/discs/${formData.id}`,
-        formData
-      );
+      await connexion.put(`/discs/${formData.id}`, formData);
       getdiscs();
       console.info("vinyle modifié");
       setFormData({
