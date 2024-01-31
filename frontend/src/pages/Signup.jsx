@@ -1,8 +1,11 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import connexion from "../services/connexion";
 import "./signup.css";
 
 function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     hashpassword: "",
@@ -17,19 +20,43 @@ function Signup() {
     });
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const showToastErrorMessage = (message) => {
+    toast.error(message);
+  };
+
+  const showToastSuccessMessage = () => {
+    toast.success("Super, tu fais partie des nôtres !");
+  };
+
+  const showToastPasswordMismatchMessage = () => {
+    toast.error("Les mots de passe ne correspondent pas.");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (formData.hashpassword.length < 5) {
+      showToastErrorMessage(
+        "Le mot de passe doit avoir au moins 5 caractères."
+      );
+      return;
+    }
+
     if (formData.hashpassword !== formData.confirmPassword) {
-      console.error("Les mots de passe ne correspondent pas.");
+      showToastPasswordMismatchMessage();
       return;
     }
 
     try {
       const response = await connexion.post("/users", formData);
       console.info("Nouvel utilisateur ajouté:", response.data);
+      showToastSuccessMessage();
     } catch (error) {
-      console.error("Erreur lors de l'ajout de l'utilisateur:", error);
+      showToastErrorMessage("Cet utilisateur existe déjà.");
     }
   };
 
@@ -51,7 +78,7 @@ function Signup() {
           New password
           <input
             placeholder="Be original"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="hashpassword"
             value={formData.hashpassword}
             onChange={handleChange}
@@ -62,7 +89,7 @@ function Signup() {
           Confirm password
           <input
             placeholder="just copy"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
@@ -70,11 +97,19 @@ function Signup() {
           />
         </label>
         <div>
+          <button
+            className="play playmarg"
+            type="button"
+            onClick={handleTogglePassword}
+          >
+            {showPassword ? "Cacher password" : "Afficher password"}
+          </button>
           <button type="submit" className="play playmarg">
             Sign'up
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }
