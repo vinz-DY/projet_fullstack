@@ -27,7 +27,7 @@ function signin() {
     toast.error(message);
   };
   const showToastMessage = (message) => {
-    toast(message);
+    toast.success(message);
   };
 
   const handleSubmit = async (e) => {
@@ -81,7 +81,7 @@ function signin() {
           </button>
         </div>
       </form>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 }

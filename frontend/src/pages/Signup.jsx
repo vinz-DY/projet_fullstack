@@ -109,7 +109,7 @@ function Signup() {
           </button>
         </div>
       </form>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 }
