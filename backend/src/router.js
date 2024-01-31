@@ -12,6 +12,7 @@ const gameControllers = require("./controllers/gameControllers");
 const discControllers = require("./controllers/discControllers");
 const userControllers = require("./controllers/userControllers");
 const validateUser = require("./validators/validateUser");
+const validateGame = require("./validators/validateGame");
 
 router.get("/discs", discControllers.browse);
 
@@ -33,7 +34,7 @@ router.get("/games", gameControllers.browse);
 router.get("/games/:id", gameControllers.read);
 router.get("/discs/:id", discControllers.read);
 
-router.put("/games/:id", gameControllers.edit);
+router.put("/games/:id", validateGame, gameControllers.edit);
 router.put("/discs/:id", discControllers.edit);
 // => {
 //   const gameId = req.params.id;
@@ -63,7 +64,7 @@ router.put("/discs/:id", discControllers.edit);
 // router.get("/items/:id", itemControllers.read);
 
 // Route to add a new item
-router.post("/games", gameControllers.add);
+router.post("/games", validateGame, gameControllers.add);
 router.post("/discs", discControllers.add);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
