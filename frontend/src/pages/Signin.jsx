@@ -21,12 +21,12 @@ function signin() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         formData
       );
-      console.info("Nouvel utilisateur ajouté:", response.data);
+      console.info("Nouvel utilisateur connecté:", response.data);
     } catch (error) {
-      console.error("Erreur lors de l'ajout de l'utilisateur:", error);
+      console.error("Erreur lors de connexion de l'utilisateur:", error);
     }
   };
 

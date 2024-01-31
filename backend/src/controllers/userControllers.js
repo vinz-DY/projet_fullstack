@@ -17,10 +17,11 @@ const browse = async (req, res, next) => {
 };
 
 // The R of BREAD - Read operation
-const read = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
-    const user = await tables.user.read(req.params.id);
+    // console.log(req.body);
+    const user = await tables.user.read(req.body.email);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
@@ -64,7 +65,7 @@ const add = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  read,
+  login,
   // edit,
   add,
   // destroy,

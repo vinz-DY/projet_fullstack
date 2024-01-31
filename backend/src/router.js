@@ -66,6 +66,7 @@ router.put("/discs/:id", discControllers.edit);
 router.post("/games", gameControllers.add);
 router.post("/discs", discControllers.add);
 router.post("/users", validateUser, userControllers.add);
+router.post("/login", validateUser, userControllers.login);
 
 const genreControllers = require("./controllers/genreControllers");
 const musicStyleControllers = require("./controllers/musicStyleControllers");
