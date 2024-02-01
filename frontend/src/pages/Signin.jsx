@@ -1,11 +1,13 @@
 import { React, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import connexion from "../services/connexion";
 import "./signin.css";
 
 function signin() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     hashpassword: "",
@@ -36,6 +38,9 @@ function signin() {
     try {
       const response = await connexion.post("/login", formData);
       showToastMessage("Bienvenido amigo");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
       console.info("Nouvel utilisateur connecté:", response.data);
     } catch (error) {
       showToastErrorMessage("le mail et le mot de passe ne correspondent pas.");

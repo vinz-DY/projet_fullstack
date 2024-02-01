@@ -58,8 +58,8 @@ function Signup() {
       console.info("Nouvel utilisateur ajouté:", response.data);
       showToastSuccessMessage();
       setTimeout(() => {
-        navigate("/");
-      }, 5000);
+        navigate("/signin");
+      }, 3000);
     } catch (error) {
       showToastErrorMessage("Cet utilisateur existe déjà.");
     }
