@@ -1,0 +1,49 @@
+.socialCtn {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+}
+.social {
+  display: flex;
+  justify-content: space-around;
+  background-color: #131413;
+  border-top: 1px solid #ffffff;
+  padding: 1rem 1rem 1rem 1rem;
+  gap: 2rem;
+  bottom: 0;
+  width: 100%;
+}
+.socialIcon {
+  font-size: 4rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  border: solid 3px #2d2e2d;
+  box-shadow: 0 0 0 3px rgb(255, 255, 255);
+  color: rgb(42, 44, 42);
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 530px) {
+  .socialIcon {
+    font-size: 3.2rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px white;
+    margin-top: 1rem;
+  }
+  .social {
+    gap: 0.6rem;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+  .logoGreen {
+    width: 80px !important;
+  }
+}
+
+.logoGreen {
+  width: 100px;
+  box-shadow: 0 0 0 3px white;
+  border-radius: 50%;
+}

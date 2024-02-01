@@ -40,12 +40,12 @@
   font-weight: bold;
 }
 
-.BigCtn {
-  height: 100vh;
+/* .BigCtn {
+  height: 50vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  align-items: flex-start;
+} */
 
 .OneImg {
   object-fit: cover;
