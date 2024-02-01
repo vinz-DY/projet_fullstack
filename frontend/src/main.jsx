@@ -12,6 +12,7 @@ import PageVinylOne from "./pages/PageVinylOne";
 import Gamespage from "./pages/Gamespage";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
   {
@@ -19,60 +20,65 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/signin",
-    element: <Signin />,
-  },
-  {
-    path: "/games",
-    element: <Gamespage />,
-    loader: () => {
-      return connexion
-        .get("/games")
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-    },
-  },
-  {
-    path: "/games/:id",
-    element: <PageGameOne />,
-    loader: ({ params }) => {
-      return connexion
-        .get(`/games/${params.id}`)
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-    },
-  },
-  {
-    path: "/adminGames",
-    element: <Admin />,
-  },
-  {
-    path: "/vinyles",
-    element: <Vinylo />,
-    loader: () => {
-      return connexion
-        .get("/discs")
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-    },
-  },
-  {
-    path: "/discs/:id",
-    element: <PageVinylOne />,
-    loader: ({ params }) => {
-      return connexion
-        .get(`/discs/${params.id}`)
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-    },
-  },
-  {
-    path: "/adminVinyles",
-    element: <Advinylo />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/signin",
+        element: <Signin />,
+      },
+      {
+        path: "/games",
+        element: <Gamespage />,
+        loader: () => {
+          return connexion
+            .get("/games")
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      {
+        path: "/games/:id",
+        element: <PageGameOne />,
+        loader: ({ params }) => {
+          return connexion
+            .get(`/games/${params.id}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      {
+        path: "/adminGames",
+        element: <Admin />,
+      },
+      {
+        path: "/vinyles",
+        element: <Vinylo />,
+        loader: () => {
+          return connexion
+            .get("/discs")
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      {
+        path: "/discs/:id",
+        element: <PageVinylOne />,
+        loader: ({ params }) => {
+          return connexion
+            .get(`/discs/${params.id}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      {
+        path: "/adminVinyles",
+        element: <Advinylo />,
+      },
+    ],
   },
 ]);
 
