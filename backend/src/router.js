@@ -70,6 +70,7 @@ router.post("/games", checkCredentials, validateGame, gameControllers.add);
 router.post("/discs", checkCredentials, validateDisc, discControllers.add);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
+router.post("/logout", userControllers.logout);
 
 const genreControllers = require("./controllers/genreControllers");
 const musicStyleControllers = require("./controllers/musicStyleControllers");
