@@ -13,3 +13,11 @@
   display: flex;
   gap: 2rem;
 }
+
+.buttonsignup {
+  display: flex;
+  flex-direction: column;
+}
+.viewpass {
+  padding: 0.5rem 1rem;
+}
