@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import connexion from "../services/connexion";
 import "./signup.css";
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     hashpassword: "",
@@ -55,6 +57,9 @@ function Signup() {
       const response = await connexion.post("/users", formData);
       console.info("Nouvel utilisateur ajouté:", response.data);
       showToastSuccessMessage();
+      setTimeout(() => {
+        navigate("/signin");
+      }, 3000);
     } catch (error) {
       showToastErrorMessage("Cet utilisateur existe déjà.");
     }
