@@ -6,8 +6,21 @@ import {
   TiSocialInstagram,
 } from "react-icons/ti";
 import Logo from "../assets/logo.jpg";
+import connexion from "../services/connexion";
 
 import "./footer.css";
+
+const handleLogout = async () => {
+  try {
+    // Appeler la route de déconnexion côté serveur
+    await connexion.post("/logout");
+
+    // Rediriger ou mettre à jour l'état de l'application après la déconnexion
+    // (facultatif, en fonction de votre logique d'application)
+  } catch (error) {
+    console.error("Erreur lors de la déconnexion :", error);
+  }
+};
 
 function Footer() {
   return (
@@ -29,9 +42,17 @@ function Footer() {
         >
           <TiSocialLinkedin className="socialIcon" />
         </a>
-        <a aria-label="logoGreen" href="/" rel="noreferrer">
-          <img src={Logo} alt="logo du site" className=" logoGreen" />
-        </a>
+        <div>
+          <a
+            onClick={handleLogout}
+            aria-label="logoGreen"
+            href="/"
+            rel="noreferrer"
+          >
+            <img src={Logo} alt="logo du site" className=" logoGreen" />
+          </a>
+          <p className="goodbye">disconnect</p>
+        </div>
         <a
           aria-label="instagram"
           href="https://www.instagram.com/"

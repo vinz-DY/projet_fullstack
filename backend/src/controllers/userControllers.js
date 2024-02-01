@@ -45,6 +45,14 @@ const login = async (req, res, next) => {
   }
 };
 
+const logout = (req, res) => {
+  // Effacer le cookie d'authentification côté client
+  res.clearCookie("auth");
+
+  // Répondre avec succès
+  res.sendStatus(200);
+};
+
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
@@ -75,6 +83,7 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   login,
+  logout,
   // edit,
   add,
   // destroy,
