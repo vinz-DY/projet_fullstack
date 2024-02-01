@@ -136,6 +136,9 @@ body {
   cursor: pointer;
   border: none;
 }
+.play:hover {
+  color: rgb(250, 174, 254);
+}
 
 @media only screen and (max-width: 600px) {
   .logoHome {
