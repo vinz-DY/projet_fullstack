@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../components/Auth";
 import "react-toastify/dist/ReactToastify.css";
 import connexion from "../services/connexion";
 import "./signin.css";
 
 function signin() {
+  const { setConnected } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -37,6 +39,7 @@ function signin() {
 
     try {
       const response = await connexion.post("/login", formData);
+      setConnected(response.data);
       showToastMessage("Bienvenido amigo");
       setTimeout(() => {
         navigate("/");
