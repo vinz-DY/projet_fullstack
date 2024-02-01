@@ -13,6 +13,8 @@ const discControllers = require("./controllers/discControllers");
 const userControllers = require("./controllers/userControllers");
 const validateUser = require("./validators/validateUser");
 const validateGame = require("./validators/validateGame");
+const validateDisc = require("./validators/validateDisc");
+const checkCredentials = require("./middlewares/checkCredentials");
 
 router.get("/discs", discControllers.browse);
 
@@ -34,8 +36,8 @@ router.get("/games", gameControllers.browse);
 router.get("/games/:id", gameControllers.read);
 router.get("/discs/:id", discControllers.read);
 
-router.put("/games/:id", validateGame, gameControllers.edit);
-router.put("/discs/:id", discControllers.edit);
+router.put("/games/:id", checkCredentials, validateGame, gameControllers.edit);
+router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
 // => {
 //   const gameId = req.params.id;
 //   const query = `
@@ -64,8 +66,8 @@ router.put("/discs/:id", discControllers.edit);
 // router.get("/items/:id", itemControllers.read);
 
 // Route to add a new item
-router.post("/games", validateGame, gameControllers.add);
-router.post("/discs", discControllers.add);
+router.post("/games", checkCredentials, validateGame, gameControllers.add);
+router.post("/discs", checkCredentials, validateDisc, discControllers.add);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
 
@@ -75,7 +77,7 @@ const musicStyleControllers = require("./controllers/musicStyleControllers");
 router.get("/genres", genreControllers.browse);
 router.get("/musicStyles", musicStyleControllers.browse);
 
-router.delete("/games/:id", gameControllers.destroy);
-router.delete("/discs/:id", discControllers.destroy);
+router.delete("/games/:id", checkCredentials, gameControllers.destroy);
+router.delete("/discs/:id", checkCredentials, discControllers.destroy);
 
 module.exports = router;

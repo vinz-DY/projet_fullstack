@@ -32,7 +32,7 @@ function App() {
     <>
       <h1 className="titreA">My Own 80's Collection</h1>
       <div className="collectionCtn">
-        {connected.role === "user" && (
+        {connected.role === 0 && (
           <>
             <div className="contenaireB">
               <img className="iconebutton" src={Vinyl} alt="" />

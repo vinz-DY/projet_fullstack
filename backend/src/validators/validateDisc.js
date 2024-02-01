@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const schema = Joi.object({
   id: Joi.number(),
-  artiste: Joi.string().required(),
+  artist: Joi.string().required(),
   title: Joi.string().required(),
   image: Joi.string().required(),
   year: Joi.number().required(),
