@@ -28,7 +28,7 @@ function Footer() {
       <div className="social">
         <a
           aria-label="facebook"
-          href="https://www.facebook.com/"
+          href="https://www.facebook.com/profile.php?id=61556307174261"
           target="_blank"
           rel="noreferrer"
         >
