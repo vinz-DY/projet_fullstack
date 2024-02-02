@@ -7,11 +7,18 @@ function Advinylo() {
   return (
     <div className="AdminCont">
       <h2 className="titleAdmin">Manage your collection</h2>
-      <Link to="/">
-        <button type="button" className="buttonHome">
-          Home
-        </button>
-      </Link>
+      <div className="adminbtndiv">
+        <Link to="/">
+          <button type="button" className="buttonHome">
+            Home
+          </button>
+        </Link>
+        <Link to="/vinyles">
+          <button type="button" className="buttonHome">
+            Vinyls
+          </button>
+        </Link>
+      </div>
       <VinylForm />
     </div>
   );

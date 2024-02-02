@@ -7,11 +7,18 @@ function Admin() {
   return (
     <div className="AdminCont">
       <h2 className="titleAdmin">Manage your collection</h2>
-      <Link to="/">
-        <button type="button" className="buttonHome">
-          Home
-        </button>
-      </Link>
+      <div className="adminbtndiv">
+        <Link to="/">
+          <button type="button" className="buttonHome">
+            Home
+          </button>
+        </Link>
+        <Link to="/games">
+          <button type="button" className="buttonHome">
+            Games
+          </button>
+        </Link>
+      </div>
       <GameForm />
     </div>
   );
