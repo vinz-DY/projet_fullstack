@@ -48,6 +48,11 @@
   border-radius: 50%;
 }
 
+.logoGreen:hover {
+  filter: grayscale(100%);
+  transition: ease 1.5s;
+}
+
 .goodbye {
   font-family: Arial, Helvetica, sans-serif;
 }

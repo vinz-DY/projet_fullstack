@@ -66,7 +66,7 @@ function signin() {
           />
         </label>
         <label className="signinCtn">
-          password
+          Password
           <input
             placeholder="connection pass"
             type={showPassword ? "text" : "password"}

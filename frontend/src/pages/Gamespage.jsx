@@ -16,7 +16,7 @@ function Gamespage() {
       <div className="appCtn">
         <Link to="/admingames">
           <button type="button" className="buttonManages">
-            manage games
+            Manage games
           </button>
         </Link>
       </div>

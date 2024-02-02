@@ -51,7 +51,7 @@ function Footer() {
           >
             <img src={Logo} alt="logo du site" className=" logoGreen" />
           </a>
-          <p className="goodbye">disconnect</p>
+          <p className="goodbye">Disconnect</p>
         </div>
         <a
           aria-label="instagram"

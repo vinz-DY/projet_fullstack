@@ -17,7 +17,7 @@ function Vinylo() {
       <div className="appCtn">
         <Link to="/adminVinyles">
           <button type="button" className="buttonManages">
-            manage Vinyls
+            Manage Vinyls
           </button>
         </Link>
       </div>
