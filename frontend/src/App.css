@@ -92,6 +92,19 @@ body {
   margin-top: 4rem;
   box-shadow: 0px 17px 25px 3px rgba(0, 0, 0, 0.75);
   transition: 1s ease;
+  animation: blinkBorder 1s infinite; /* Utilisez la fonction blinkBorder avec une durée infinie */
+}
+
+@keyframes blinkBorder {
+  0% {
+    border: 2px solid transparent; /* Bordure initiale transparente */
+  }
+  50% {
+    border: 2px solid rgb(250, 174, 254); /* Bordure rouge pendant la moitié de l'animation */
+  }
+  100% {
+    border: 2px solid transparent; /* Bordure finale transparente */
+  }
 }
 
 .logoContainer {
