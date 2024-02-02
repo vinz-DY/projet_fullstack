@@ -16,7 +16,7 @@ function OneCard() {
           <p>{oneCard.year}</p>
           <p>{oneCard.console}</p>
           <p>{oneCard.genre_label}</p>
-          <Link to="/">
+          <Link to="/games">
             <button className="button" type="button">
               Back in Games
             </button>
