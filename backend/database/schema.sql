@@ -102,5 +102,10 @@ INSERT INTO game(title,image,year,console, genre_id) VALUES ('aladdin',"https://
 
 
 INSERT INTO movieStyle(label) VALUES ('horror');
+INSERT INTO movieStyle(label) VALUES ('action');
+INSERT INTO movieStyle(label) VALUES ('science fiction');
+INSERT INTO movieStyle(label) VALUES ('comedy');
+INSERT INTO movieStyle(label) VALUES ('asia');
 
 INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1);
+INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://i.ebayimg.com/images/g/n7oAAOSw4mJmBuj6/s-l1600.png",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
