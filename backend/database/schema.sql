@@ -3,6 +3,10 @@ create table genre (
   id INT PRIMARY KEY AUTO_INCREMENT,
   label VARCHAR(255) NOT NULL
 );
+create table movieStyle (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  label VARCHAR(255) NOT NULL
+);
 
 create table musicStyle (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -35,6 +39,17 @@ create table game (
   CONSTRAINT fk_game_genre
   FOREIGN KEY (genre_id)
   REFERENCES genre(id)
+);
+create table laserdisc (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  originalMovieTitle VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
+  teaser VARCHAR(255)NOT NULL,
+  movieStyle_id INT NOT NULL,
+  CONSTRAINT fk_laserdisc_movieStyle
+  FOREIGN KEY (movieStyle_id)
+  REFERENCES movieStyle(id)
 );
 
 create table user (
@@ -85,3 +100,7 @@ INSERT INTO game(title,image,year,console, genre_id) VALUES ('mega man','https:/
 INSERT INTO game(title,image,year,console, genre_id) VALUES ('the king of fighters 94',"https://upload.wikimedia.org/wikipedia/en/e/e4/The_King_of_Fighters_'94_arcade_flyer.jpg",1994,'NEO GEO',2);
 INSERT INTO game(title,image,year,console, genre_id) VALUES ('aladdin',"https://i.pinimg.com/originals/b7/fb/8d/b7fb8dcb85136aad58bb417e23899799.jpg",1993,'megadrive',1);
 
+
+INSERT INTO movieStyle(label) VALUES ('horror');
+
+INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1);
