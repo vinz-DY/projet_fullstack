@@ -11,16 +11,20 @@ const router = express.Router();
 const gameControllers = require("./controllers/gameControllers");
 const discControllers = require("./controllers/discControllers");
 const userControllers = require("./controllers/userControllers");
+const genreControllers = require("./controllers/genreControllers");
+const musicStyleControllers = require("./controllers/musicStyleControllers");
+const laserdiscControllers = require("./controllers/laserdiscControllers");
 const validateUser = require("./validators/validateUser");
 const validateGame = require("./validators/validateGame");
 const validateDisc = require("./validators/validateDisc");
 const checkCredentials = require("./middlewares/checkCredentials");
 
-router.get("/discs", discControllers.browse);
-
 router.get("/users", userControllers.browse);
-
+router.get("/discs", discControllers.browse);
+router.get("/musicStyles", musicStyleControllers.browse);
 router.get("/games", gameControllers.browse);
+router.get("/genres", genreControllers.browse);
+router.get("/laserdiscs", laserdiscControllers.browse);
 // => {
 //   client
 //     .query("SELECT * FROM game")
@@ -71,12 +75,6 @@ router.post("/discs", checkCredentials, validateDisc, discControllers.add);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.post("/logout", userControllers.logout);
-
-const genreControllers = require("./controllers/genreControllers");
-const musicStyleControllers = require("./controllers/musicStyleControllers");
-
-router.get("/genres", genreControllers.browse);
-router.get("/musicStyles", musicStyleControllers.browse);
 
 router.delete("/games/:id", checkCredentials, gameControllers.destroy);
 router.delete("/discs/:id", checkCredentials, discControllers.destroy);
