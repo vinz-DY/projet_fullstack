@@ -4,11 +4,12 @@ const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
+    const searchTerm = req.query.searchTerm || "";
     // Fetch all games from the database
-    const games = await tables.game.readAll();
+    const games = await tables.game.readAll(searchTerm);
 
     // Respond with the games in JSON format
-    res.json(games);
+    res.status(200).json(games);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

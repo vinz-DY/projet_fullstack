@@ -35,14 +35,20 @@ class GameManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all games from the "game" table
-    const [rows] = await this.database
-      .query(`SELECT game.*, genre.label as genre_label 
-         FROM ${this.table} 
-         LEFT JOIN genre ON game.genre_id = genre.id`);
+  async readAll(searchTerm) {
+    let query = `SELECT * FROM ${this.table}`;
+    let params = [];
 
-    // Return the array of games
+    if (searchTerm) {
+      query += ` WHERE title LIKE ?`;
+      params = [`%${searchTerm}%`];
+    } else {
+      query += " LIMIT 8";
+    }
+
+    const [rows] = await this.database.query(query, params);
+
+    // Return the array of cars
     return rows;
   }
 
