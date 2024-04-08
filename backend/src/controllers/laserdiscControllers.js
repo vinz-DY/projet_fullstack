@@ -4,11 +4,12 @@ const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
+    const searchTerm = req.query.searchTerm || "";
     // Fetch all laserdiscs from the database
-    const laserdiscs = await tables.laserdisc.readAll();
+    const laserdiscs = await tables.laserdisc.readAll(searchTerm);
 
     // Respond with the laserdiscs in JSON format
-    res.json(laserdiscs);
+    res.status(200).json(laserdiscs);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

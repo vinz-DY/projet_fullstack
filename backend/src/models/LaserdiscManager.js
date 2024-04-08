@@ -41,14 +41,20 @@ class LaserdiscManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all laserdiscs from the "laserdisc" table
-    const [rows] = await this.database
-      .query(`SELECT laserdisc.*, movieStyle.label as movieStyle_label 
-         FROM ${this.table} 
-         LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id`);
+  async readAll(searchTerm) {
+    let query = `SELECT * FROM ${this.table}`;
+    let params = [];
 
-    // Return the array of laserdiscs
+    if (searchTerm) {
+      query += ` WHERE originalMovieTitle LIKE ?`;
+      params = [`%${searchTerm}%`];
+    } else {
+      query += " LIMIT 15";
+    }
+
+    const [rows] = await this.database.query(query, params);
+
+    // Return the array of cars
     return rows;
   }
 
