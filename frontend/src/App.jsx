@@ -37,7 +37,7 @@ function App() {
           <>
             <div className="contenaireB">
               <img className="iconebutton" src={Vinyl} alt="" />
-              <Link to="/vinyles">
+              <Link to="/vinyls">
                 <button type="button" className="buttonManage">
                   My Own Vinyls
                 </button>

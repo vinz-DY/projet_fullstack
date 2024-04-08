@@ -13,7 +13,7 @@ function Advinylo() {
             Home
           </button>
         </Link>
-        <Link to="/vinyles">
+        <Link to="/vinyls">
           <button type="button" className="buttonHome">
             Vinyls
           </button>
