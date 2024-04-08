@@ -17,7 +17,7 @@ function OneVinyl() {
             <p>{oneCardVinyl.year}</p>
             <p>{oneCardVinyl.musicStyle_label}</p>
             <p>vinyl color : {oneCardVinyl.color}</p>
-            <Link to="/vinyles">
+            <Link to="/vinyls">
               <button className="button" type="button">
                 Back in Vinyls
               </button>

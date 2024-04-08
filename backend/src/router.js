@@ -20,6 +20,8 @@ const validateGame = require("./validators/validateGame");
 const validateDisc = require("./validators/validateDisc");
 const checkCredentials = require("./middlewares/checkCredentials");
 
+// route to get All
+
 router.get("/users", userControllers.browse);
 router.get("/discs", discControllers.browse);
 router.get("/musicStyles", musicStyleControllers.browse);
@@ -39,8 +41,13 @@ router.get("/movieStyles", movieStyleControllers.browse);
 //     });
 // });
 
+// Route to get a specific item by ID
+
 router.get("/games/:id", gameControllers.read);
 router.get("/discs/:id", discControllers.read);
+router.get("/laserdiscs/:id", laserdiscControllers.read);
+
+// Route to put and update by ID
 
 router.put("/games/:id", checkCredentials, validateGame, gameControllers.edit);
 router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
@@ -78,6 +85,7 @@ router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.post("/logout", userControllers.logout);
 
+// Route to delete an item by id
 router.delete("/games/:id", checkCredentials, gameControllers.destroy);
 router.delete("/discs/:id", checkCredentials, discControllers.destroy);
 

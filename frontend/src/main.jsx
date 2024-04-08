@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/vinyles",
+        path: "/vinyls",
         element: <Vinylo />,
         loader: () => {
           return connexion
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/discs/:id",
+        path: "/vinyl/:id",
         element: <PageVinylOne />,
         loader: ({ params }) => {
           return connexion
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/adminVinyles",
+        path: "/adminVinyls",
         element: <Advinylo />,
       },
     ],

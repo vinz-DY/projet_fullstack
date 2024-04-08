@@ -42,14 +42,31 @@ class discManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all discs from the "disc" table
-    const [rows] = await this.database
-      .query(`SELECT disc.*, musicStyle.label as musicStyle_label 
-         FROM ${this.table} 
-         LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id`);
+  // async readAll() {
+  //   // Execute the SQL SELECT query to retrieve all discs from the "disc" table
+  //   const [rows] = await this.database
+  //     .query(`SELECT disc.*, musicStyle.label as musicStyle_label
+  //        FROM ${this.table}
+  //        LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id`);
 
-    // Return the array of discs
+  //   // Return the array of discs
+  //   return rows;
+  // }
+
+  async readAll(searchTerm) {
+    let query = `SELECT * FROM ${this.table}`;
+    let params = [];
+
+    if (searchTerm) {
+      query += ` WHERE artist LIKE ?`;
+      params = [`%${searchTerm}%`];
+    } else {
+      query += " LIMIT 15";
+    }
+
+    const [rows] = await this.database.query(query, params);
+
+    // Return the array of cars
     return rows;
   }
 

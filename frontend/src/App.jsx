@@ -4,6 +4,7 @@ import Logo from "./assets/logo.jpg";
 import Vinyl from "./assets/vinyl.jpg";
 import Invader from "./assets/invader.png";
 import Music from "./assets/you.mp3";
+import LD from "./assets/LD.png";
 import { AuthContext } from "./components/Auth";
 import "./App.css";
 
@@ -36,7 +37,7 @@ function App() {
           <>
             <div className="contenaireB">
               <img className="iconebutton" src={Vinyl} alt="" />
-              <Link to="/vinyles">
+              <Link to="/vinyls">
                 <button type="button" className="buttonManage">
                   My Own Vinyls
                 </button>
@@ -47,6 +48,14 @@ function App() {
               <Link to="/games">
                 <button type="button" className="buttonManage">
                   My Own Games
+                </button>
+              </Link>
+            </div>
+            <div className="contenaireB">
+              <img className="iconebutton" src={LD} alt="" />
+              <Link to="/laserdiscs">
+                <button type="button" className="buttonManage">
+                  My Own Laserdiscs
                 </button>
               </Link>
             </div>

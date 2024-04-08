@@ -15,7 +15,7 @@ function Vinylo() {
         </Link>
       </div>
       <div className="appCtn">
-        <Link to="/adminVinyles">
+        <Link to="/adminVinyls">
           <button type="button" className="buttonManages">
             Manage Vinyls
           </button>
