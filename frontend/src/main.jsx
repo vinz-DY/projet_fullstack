@@ -15,6 +15,9 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Layout from "./components/Layout";
 
+import PageLaserdiscOne from "./pages/PageLaserdiscOne";
+import Laserdiscos from "./pages/Laserdiscos";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +82,30 @@ const router = createBrowserRouter([
         path: "/adminVinyls",
         element: <Advinylo />,
       },
+      {
+        path: "/laserdiscs",
+        element: <Laserdiscos />,
+        loader: () => {
+          return connexion
+            .get("/laserdiscs")
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      {
+        path: "/laserdisc/:id",
+        element: <PageLaserdiscOne />,
+        loader: ({ params }) => {
+          return connexion
+            .get(`/laserdiscs/${params.id}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
+      // {
+      //   path: "/adminLaserdiscs",
+      //   element: <Advinylo />,
+      // },
     ],
   },
 ]);
