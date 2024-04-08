@@ -1,17 +1,13 @@
 import React from "react";
-import "./cardVinylBase.css";
 import { Link } from "react-router-dom";
+import "./cardVinylBase.css";
 
-// la props laserdisc vient de CardLaserdiscFiltered.jsx
-function CardLaserdiscBase({ laserdisc }) {
+// la props LD vient de CardLaserdiscFiltered.jsx
+function CardLaserdiscBase({ LD }) {
   return (
-    <Link to={`/laserdisc/${laserdisc.id}`}>
+    <Link to={`/laserdisc/${LD.id}`}>
       <div className="One">
-        <img
-          className="laserdiscpics"
-          src={laserdisc.image}
-          alt={laserdisc.originalMovieTitle}
-        />
+        <img className="discpics" src={LD.image} alt={LD.originalMovieTitle} />
       </div>
     </Link>
   );

@@ -14,8 +14,9 @@ import Gamespage from "./pages/Gamespage";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Layout from "./components/Layout";
-import Laserdiscs from "./pages/Laserdiscs";
+
 import PageLaserdiscOne from "./pages/PageLaserdiscOne";
+import Laserdiscos from "./pages/Laserdiscos";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/laserdiscs",
-        element: <Laserdiscs />,
+        element: <Laserdiscos />,
         loader: () => {
           return connexion
             .get("/laserdiscs")
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/Laserdisc/:id",
+        path: "/laserdisc/:id",
         element: <PageLaserdiscOne />,
         loader: ({ params }) => {
           return connexion

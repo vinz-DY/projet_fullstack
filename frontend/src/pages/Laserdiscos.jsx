@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CardLaserdiscFiltered from "../components/CardLaserdiscFiltered";
 import "../App.css";
+import CardLdFilter from "../components/CardLdFilter";
 
-function Laserdiscs() {
+function Laserdiscos() {
   return (
     <div>
       <h1 className="titreA">My Own Laserdiscs Collection</h1>
@@ -21,9 +21,9 @@ function Laserdiscs() {
           </button>
         </Link>
       </div>
-      <CardLaserdiscFiltered />
+      <CardLdFilter />
     </div>
   );
 }
 
-export default Laserdiscs();
+export default Laserdiscos;
