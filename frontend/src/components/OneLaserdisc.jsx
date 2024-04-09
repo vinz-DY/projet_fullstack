@@ -9,8 +9,8 @@ function Onelaserdisc() {
   return (
     <div>
       <div className="BigCtn">
-        <div className="oneCardLaserdiscCtn video">
-          <div className="imgCtn video">
+        <div className="oneCardLaserdiscCtn">
+          <div className="imgCtn">
             {/* <img className="OneImg" src={oneCardlaserdisc.image} alt="" /> */}
             <Video oneCardlaserdisc={oneCardlaserdisc} />
           </div>
