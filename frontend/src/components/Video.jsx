@@ -8,8 +8,8 @@ function Video({ oneCardlaserdisc }) {
         url={oneCardlaserdisc.teaser}
         controls
         playing
-        width="100%"
-        height="100%"
+        width="98%"
+        height="98%"
         className="player_video"
       />
     </div>
