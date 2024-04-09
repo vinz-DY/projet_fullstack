@@ -7,7 +7,7 @@ function Video({ oneCardlaserdisc }) {
       <ReactPlayer
         url={oneCardlaserdisc.teaser}
         controls
-        // playing
+        playing
         width="98%"
         height="100%"
         className="player_video"
