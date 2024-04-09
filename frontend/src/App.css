@@ -20,6 +20,7 @@ body {
 .collectionCtn {
   display: flex;
   justify-content: center;
+  align-items: baseline;
   margin-bottom: 1rem;
   gap: 2rem;
 }
@@ -56,6 +57,7 @@ body {
   background-color: rgb(255, 183, 0);
   color: white;
   outline: 2px solid rgb(255, 255, 255);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
 }
 .buttonManages {
   font-size: 1rem;
@@ -76,6 +78,7 @@ body {
   background-color: rgb(255, 183, 0);
   color: white;
   outline: 2px solid rgb(255, 255, 255);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
 }
 
 .logoHome {
@@ -116,10 +119,13 @@ body {
 }
 
 .contenaireB {
+  height: 135px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+
   transition: 1s ease;
 }
 .contenaireB:hover {
@@ -185,4 +191,31 @@ body {
   margin-top: 1rem;
   background-color: white;
   color: black;
+}
+@media only screen and (max-width: 480px) {
+  .buttonManage {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+    width: 6rem;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: 1s ease;
+    border: none;
+  }
+  .buttonManage:hover {
+    font-size: 0.8rem;
+    transform: scale(1.2);
+    transition: 1s ease;
+    background-color: rgb(255, 183, 0);
+    color: white;
+    outline: 2px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+  }
+  .collectionCtn {
+    gap: 0.4rem;
+    transition: 2s ease;
+  }
 }
