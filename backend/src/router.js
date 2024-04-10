@@ -19,6 +19,7 @@ const validateUser = require("./validators/validateUser");
 const validateGame = require("./validators/validateGame");
 const validateDisc = require("./validators/validateDisc");
 const checkCredentials = require("./middlewares/checkCredentials");
+const validateLaserdisc = require("./validators/validateLaserdisc");
 
 // route to get All
 
@@ -51,6 +52,12 @@ router.get("/laserdiscs/:id", laserdiscControllers.read);
 
 router.put("/games/:id", checkCredentials, validateGame, gameControllers.edit);
 router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
+router.put(
+  "/laserdiscs/:id",
+  checkCredentials,
+  validateLaserdisc,
+  laserdiscControllers.edit
+);
 // => {
 //   const gameId = req.params.id;
 //   const query = `
@@ -81,6 +88,12 @@ router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
 // Route to add a new item
 router.post("/games", checkCredentials, validateGame, gameControllers.add);
 router.post("/discs", checkCredentials, validateDisc, discControllers.add);
+router.post(
+  "/laserdiscs",
+  checkCredentials,
+  validateLaserdisc,
+  laserdiscControllers.add
+);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.post("/logout", userControllers.logout);
@@ -88,5 +101,10 @@ router.post("/logout", userControllers.logout);
 // Route to delete an item by id
 router.delete("/games/:id", checkCredentials, gameControllers.destroy);
 router.delete("/discs/:id", checkCredentials, discControllers.destroy);
+router.delete(
+  "/laserdiscs/:id",
+  checkCredentials,
+  laserdiscControllers.destroy
+);
 
 module.exports = router;

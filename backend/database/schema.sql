@@ -51,6 +51,28 @@ create table laserdisc (
   FOREIGN KEY (movieStyle_id)
   REFERENCES movieStyle(id)
 );
+create table dvdBluray (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  originalMovieTitle VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
+  teaser VARCHAR(255)NOT NULL,
+  movieStyle_id INT NOT NULL,
+  CONSTRAINT fk_dvdBluray_movieStyle
+  FOREIGN KEY (movieStyle_id)
+  REFERENCES movieStyle(id)
+);
+create table vhs (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  originalMovieTitle VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
+  teaser VARCHAR(255)NOT NULL,
+  movieStyle_id INT NOT NULL,
+  CONSTRAINT fk_vhs_movieStyle
+  FOREIGN KEY (movieStyle_id)
+  REFERENCES movieStyle(id)
+);
 
 create table user (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -109,3 +131,7 @@ INSERT INTO movieStyle(label) VALUES ('asia');
 
 INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1);
 INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://i.ebayimg.com/images/g/n7oAAOSw4mJmBuj6/s-l1600.png",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
+
+INSERT INTO dvdbluray(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://mattclayne.com/wp-content/uploads/2017/12/Ghostbusters-Poster.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
+
+INSERT INTO vhs(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://www.filmsfantastiques.com/wp-content/uploads/2022/02/s-o-s-fantomes-poster-OK.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);

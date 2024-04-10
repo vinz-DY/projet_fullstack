@@ -1,6 +1,7 @@
 import React from "react";
 import ReactPlayer from "react-player";
 
+/* la props oneCardlaserdisc vient du composant OneLaserdisc.jsx */
 function Video({ oneCardlaserdisc }) {
   return (
     <div className="video_ctn">

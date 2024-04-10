@@ -244,7 +244,7 @@ function LaserdiscForm() {
                     <td>{laserdisc.originalMovieTitle}</td>
                     <td>
                       <img
-                        className="imgList"
+                        className="imgList2"
                         src={laserdisc.image}
                         alt="cover laserdisc"
                       />
