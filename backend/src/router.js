@@ -88,6 +88,12 @@ router.put(
 // Route to add a new item
 router.post("/games", checkCredentials, validateGame, gameControllers.add);
 router.post("/discs", checkCredentials, validateDisc, discControllers.add);
+router.post(
+  "/laserdiscs",
+  checkCredentials,
+  validateLaserdisc,
+  laserdiscControllers.add
+);
 router.post("/users", validateUser, userControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.post("/logout", userControllers.logout);
@@ -95,5 +101,10 @@ router.post("/logout", userControllers.logout);
 // Route to delete an item by id
 router.delete("/games/:id", checkCredentials, gameControllers.destroy);
 router.delete("/discs/:id", checkCredentials, discControllers.destroy);
+router.delete(
+  "/laserdiscs/:id",
+  checkCredentials,
+  laserdiscControllers.destroy
+);
 
 module.exports = router;
