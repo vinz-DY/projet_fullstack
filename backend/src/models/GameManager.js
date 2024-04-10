@@ -36,7 +36,7 @@ class GameManager extends AbstractManager {
   }
 
   async readAll(searchTerm) {
-    let query = `SELECT * FROM ${this.table}`;
+    let query = `SELECT game.*, genre.label as genre_label FROM ${this.table} LEFT JOIN genre ON game.genre_id = genre.id`;
     let params = [];
 
     if (searchTerm) {
