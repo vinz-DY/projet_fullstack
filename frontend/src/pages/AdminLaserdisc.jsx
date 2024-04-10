@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import VinylForm from "../components/VinylForm";
 import "./admin.css";
+import LaserdiscForm from "../components/LaserdiscForm";
 
 function AdminLaserdisc() {
   return (
@@ -19,7 +19,7 @@ function AdminLaserdisc() {
           </button>
         </Link>
       </div>
-      <VinylForm />
+      <LaserdiscForm />
     </div>
   );
 }

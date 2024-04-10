@@ -2,36 +2,37 @@ import React, { useState, useEffect } from "react";
 import connexion from "../services/connexion";
 import "./vinylForm.css";
 
-function VinylForm() {
+function LaserdiscForm() {
   const [formData, setFormData] = useState({
-    artist: "",
-    title: "",
+    originalMovieTitle: "",
     image: "",
     year: null,
-    color: "",
-    musicStyle_id: null,
+    teaser: "",
+    movieStyle_id: null,
   });
-  const [musicStyles, setmusicStyles] = useState([]);
-  const [discs, setdiscs] = useState([]);
+  const [movieStyles, setmovieStyles] = useState([]);
+  const [laserdiscs, setlaserdiscs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getmusicStyles = async () => {
+  const getmovieStyles = async () => {
     try {
-      const mymusicStyles = await connexion
-        .get("/musicStyles")
+      const mymovieStyles = await connexion
+        .get("/movieStyles")
         .then((res) => res.data);
-      setmusicStyles(mymusicStyles);
+      setmovieStyles(mymovieStyles);
     } catch (error) {
-      console.error("Erreur ajout musicStyle", error);
+      console.error("Erreur ajout movieStyle", error);
     }
   };
 
-  const getdiscs = async () => {
+  const getlaserdiscs = async () => {
     try {
-      const mydiscs = await connexion.get("/discs").then((res) => res.data);
-      setdiscs(mydiscs);
+      const mylaserdiscs = await connexion
+        .get("/laserdiscs")
+        .then((res) => res.data);
+      setlaserdiscs(mylaserdiscs);
     } catch (error) {
-      console.error("Erreur get discs", error);
+      console.error("Erreur get laserdiscs", error);
     }
   };
 
@@ -40,12 +41,12 @@ function VinylForm() {
   }, [formData]);
 
   useEffect(() => {
-    getmusicStyles();
-    getdiscs();
+    getmovieStyles();
+    getlaserdiscs();
   }, []);
 
   const handleChange = (e) => {
-    if (e.target.name === "musicStyle_id") {
+    if (e.target.name === "movieStyle_id") {
       setFormData((prevFormData) => ({
         ...prevFormData,
         [e.target.name]: +e.target.value,
@@ -67,74 +68,74 @@ function VinylForm() {
     e.preventDefault();
 
     try {
-      const response = await connexion.post("/discs", formData);
-      getdiscs();
+      const response = await connexion.post("/laserdiscs", formData);
+      getlaserdiscs();
       setFormData({
-        artist: "",
-        title: "",
+        originalMovieTitle: "",
         image: "",
         year: "",
-        color: "",
-        musicStyle_id: "",
+        teaser: "",
+        movieStyle_id: "",
       });
-      console.info("Nouveau vinyle ajouté:", response.data);
+      console.info("Nouveau laserdisc ajouté:", response.data);
     } catch (error) {
-      console.error("Erreur lors de l'ajout du vinyle:", error);
+      console.error("Erreur lors de l'ajout du laserdisc:", error);
     }
   };
 
-  const deletedisc = async (id) => {
+  const deletelaserdisc = async (id) => {
     // Display a confirmation dialog
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this disc?"
+      "Are you sure you want to delete this laserdisc?"
     );
 
     if (confirmDelete) {
       try {
-        const response = await connexion.delete(`/discs/${id}`);
-        getdiscs();
-        console.info("disc deleted:", response.data);
+        const response = await connexion.delete(`/laserdiscs/${id}`);
+        getlaserdiscs();
+        console.info("laserdisc deleted:", response.data);
       } catch (error) {
-        console.error("Error deleting the disc:", error);
+        console.error("Error deleting the laserdisc:", error);
       }
     } else {
       console.log("Deletion canceled.");
     }
   };
 
-  const putdisc = async (e) => {
+  const putlaserdisc = async (e) => {
     e.preventDefault();
     try {
-      await connexion.put(`/discs/${formData.id}`, formData);
-      getdiscs();
-      console.info("vinyle modifié");
+      await connexion.put(`/laserdiscs/${formData.id}`, formData);
+      getlaserdiscs();
+      console.info("laserdisc modifié");
       setFormData({
-        artist: "",
-        title: "",
+        originalMovieTitle: "",
         image: "",
         year: "",
-        color: "",
-        musicStyle_id: "",
+        teaser: "",
+        movieStyle_id: "",
       });
     } catch (error) {
-      console.error("Erreur de la modification du vinyle:", error);
+      console.error("Erreur de la modification du laserdisc:", error);
     }
   };
 
-  const loaddisc = (disc) => {
-    setFormData(disc);
+  const loadlaserdisc = (laserdisc) => {
+    setFormData(laserdisc);
   };
 
   const handleRequest = (e) => {
     if (formData.id) {
-      putdisc(e);
+      putlaserdisc(e);
     } else {
       handleSubmit(e);
     }
   };
 
-  const filtereddiscs = discs.filter((disc) =>
-    disc.artist.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredlaserdiscs = laserdiscs.filter((laserdisc) =>
+    laserdisc.originalMovieTitle
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -144,7 +145,7 @@ function VinylForm() {
           <input
             className="searchbar"
             type="text"
-            placeholder="Rechercher un vinyle..."
+            placeholder="Rechercher un laserdisc..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -152,26 +153,15 @@ function VinylForm() {
       </div>
       <div className="FormBigCtn">
         <form onSubmit={handleRequest}>
-          <h2 className="AddG">Add your own disc</h2>
+          <h2 className="AddG">Add your own laserdisc</h2>
           <div className="formCtn">
             <div className="inputG">
               <label>
-                <p className="formP">Artist:</p>
+                <p className="formP">Original Movie Title:</p>
                 <input
                   type="text"
-                  name="artist"
-                  value={formData.artist}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div className="inputG">
-              <label>
-                <p className="formP">Title:</p>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
+                  name="originalMovieTitle"
+                  value={formData.originalMovieTitle}
                   onChange={handleChange}
                 />
               </label>
@@ -200,28 +190,28 @@ function VinylForm() {
             </div>
             <div className="inputG">
               <label>
-                <p className="formP">Color disc:</p>
+                <p className="formP">Teaser:</p>
                 <input
                   type="text"
-                  name="color"
-                  value={formData.color}
+                  name="teaser"
+                  value={formData.teaser}
                   onChange={handleChange}
                 />
               </label>
             </div>
             <div>
               <label>
-                <p className="formP">musicStyle</p>
+                <p className="formP">Movie Style</p>
                 <select
-                  name="musicStyle_id"
+                  name="movieStyle_id"
                   onChange={handleChange}
                   required
-                  value={formData.musicStyle_id}
+                  value={formData.movieStyle_id}
                 >
-                  <option value={null}>choisi ton style</option>
-                  {musicStyles.map((musicStyle) => (
-                    <option key={musicStyle.id} value={musicStyle.id}>
-                      {musicStyle.label}
+                  <option value={null}>choisi ton genre</option>
+                  {movieStyles.map((movieStyle) => (
+                    <option key={movieStyle.id} value={movieStyle.id}>
+                      {movieStyle.label}
                     </option>
                   ))}
                 </select>
@@ -233,49 +223,47 @@ function VinylForm() {
           </div>
         </form>
         <section className="sectionCtn">
-          <h2>discs</h2>
+          <h2>laserdiscs</h2>
           <table>
             <thead>
               <tr>
                 <th>Place</th>
-                <th>Artist</th>
-                <th>Album</th>
+                <th>Original Title</th>
                 <th>Image</th>
                 <th>Date</th>
-                <th>Style</th>
-                <th>Color</th>
+                <th>Genre</th>
+                <th>Teaser</th>
                 <th>Modify</th>
               </tr>
             </thead>
             <tbody>
-              {filtereddiscs.map((disc) => {
+              {filteredlaserdiscs.map((laserdisc) => {
                 return (
-                  <tr key={disc.id}>
-                    <td>{disc.id}</td>
-                    <td>{disc.artist}</td>
-                    <td>{disc.title}</td>
+                  <tr key={laserdisc.id}>
+                    <td>{laserdisc.id}</td>
+                    <td>{laserdisc.originalMovieTitle}</td>
                     <td>
                       <img
                         className="imgList"
-                        src={disc.image}
-                        alt="cover disc"
+                        src={laserdisc.image}
+                        alt="cover laserdisc"
                       />
                     </td>
-                    <td>{disc.year}</td>
-                    <td>{disc.musicStyle_label}</td>
-                    <td>{disc.color}</td>
+                    <td>{laserdisc.year}</td>
+                    <td>{laserdisc.movieStyle_label}</td>
+                    <td>{laserdisc.teaser}</td>
                     <td className="buttondelput">
                       <button
                         className="dpButton"
                         type="button"
-                        onClick={() => deletedisc(disc.id)}
+                        onClick={() => deletelaserdisc(laserdisc.id)}
                       >
                         Delete
                       </button>
                       <button
                         className="dpButton"
                         type="button"
-                        onClick={() => loaddisc(disc)}
+                        onClick={() => loadlaserdisc(laserdisc)}
                       >
                         Load
                       </button>
@@ -291,4 +279,4 @@ function VinylForm() {
   );
 }
 
-export default VinylForm;
+export default LaserdiscForm;

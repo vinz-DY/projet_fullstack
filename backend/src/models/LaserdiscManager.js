@@ -42,7 +42,7 @@ class LaserdiscManager extends AbstractManager {
   }
 
   async readAll(searchTerm) {
-    let query = `SELECT * FROM ${this.table}`;
+    let query = `SELECT laserdisc.*, movieStyle.label as movieStyle_label FROM ${this.table} LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id`;
     let params = [];
 
     if (searchTerm) {
