@@ -51,6 +51,7 @@ router.get("/laserdiscs/:id", laserdiscControllers.read);
 
 router.put("/games/:id", checkCredentials, validateGame, gameControllers.edit);
 router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
+router.put("/laserdiscs/:id", checkCredentials, laserdiscControllers.edit);
 // => {
 //   const gameId = req.params.id;
 //   const query = `

@@ -256,7 +256,7 @@ function VinylForm() {
                     <td>{disc.title}</td>
                     <td>
                       <img
-                        className="imgList"
+                        className="imgList2"
                         src={disc.image}
                         alt="cover disc"
                       />
