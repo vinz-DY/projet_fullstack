@@ -19,6 +19,7 @@ const validateUser = require("./validators/validateUser");
 const validateGame = require("./validators/validateGame");
 const validateDisc = require("./validators/validateDisc");
 const checkCredentials = require("./middlewares/checkCredentials");
+const validateLaserdisc = require("./validators/validateLaserdisc");
 
 // route to get All
 
@@ -51,7 +52,12 @@ router.get("/laserdiscs/:id", laserdiscControllers.read);
 
 router.put("/games/:id", checkCredentials, validateGame, gameControllers.edit);
 router.put("/discs/:id", checkCredentials, validateDisc, discControllers.edit);
-router.put("/laserdiscs/:id", checkCredentials, laserdiscControllers.edit);
+router.put(
+  "/laserdiscs/:id",
+  checkCredentials,
+  validateLaserdisc,
+  laserdiscControllers.edit
+);
 // => {
 //   const gameId = req.params.id;
 //   const query = `
