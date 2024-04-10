@@ -54,7 +54,7 @@ class discManager extends AbstractManager {
   // }
 
   async readAll(searchTerm) {
-    let query = `SELECT * FROM ${this.table}`;
+    let query = `SELECT disc.*, musicStyle.label as musicStyle_label FROM ${this.table} LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id`;
     let params = [];
 
     if (searchTerm) {

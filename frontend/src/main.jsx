@@ -17,6 +17,7 @@ import Layout from "./components/Layout";
 
 import PageLaserdiscOne from "./pages/PageLaserdiscOne";
 import Laserdiscos from "./pages/Laserdiscos";
+import AdminLaserdisc from "./pages/AdminLaserdisc";
 
 const router = createBrowserRouter([
   {
@@ -102,10 +103,10 @@ const router = createBrowserRouter([
             .catch((err) => console.error(err));
         },
       },
-      // {
-      //   path: "/adminLaserdiscs",
-      //   element: <Advinylo />,
-      // },
+      {
+        path: "/adminLaserdiscs",
+        element: <AdminLaserdisc />,
+      },
     ],
   },
 ]);
