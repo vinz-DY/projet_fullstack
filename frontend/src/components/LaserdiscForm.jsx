@@ -223,7 +223,7 @@ function LaserdiscForm() {
           </div>
         </form>
         <section className="sectionCtn">
-          <h2>laserdiscs</h2>
+          <h2>My laserdiscs</h2>
           <table>
             <thead>
               <tr>
