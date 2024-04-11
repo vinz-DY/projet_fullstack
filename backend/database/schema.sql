@@ -31,9 +31,10 @@ create table disc (
   musicStyle_id INT NOT NULL,
   CONSTRAINT fk_disc_musicStyle
   FOREIGN KEY (musicStyle_id)
-  REFERENCES musicStyle(id)
+  REFERENCES musicStyle(id),
+  user_id INT NOT NULL,
+  CONSTRAINT fk_disc_user FOREIGN KEY (user_id) REFERENCES user(id)
 );
-
 
 create table game (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -97,8 +98,8 @@ INSERT INTO musicStyle(label) VALUES ('Funck');
 INSERT INTO musicStyle(label) VALUES ('80s');
 
 
-INSERT INTO disc(artist, title, image, year, color, musicStyle_id) VALUES ('placebo',"without you i'm nothing","https://www.srcvinyl.com/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/p/l/placebo_without_coverar_3000dpi300rgb1000169992.jpg",2015,'yellow',1);
-INSERT INTO disc(artist, title, image, year, color, musicStyle_id) VALUES ('orelsan',"civilisation","https://ladistilleriemusicale.fr/wp-content/uploads/2021/11/ab67616d0000b27358ba1ea637001f9a15e55a92-400x400.jpeg",2021,'Black',4);
+INSERT INTO disc(artist, title, image, year, color, musicStyle_id, user_id) VALUES ('placebo',"without you i'm nothing","https://www.srcvinyl.com/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/p/l/placebo_without_coverar_3000dpi300rgb1000169992.jpg",2015,'yellow',1,1);
+INSERT INTO disc(artist, title, image, year, color, musicStyle_id, user_id) VALUES ('orelsan',"civilisation","https://ladistilleriemusicale.fr/wp-content/uploads/2021/11/ab67616d0000b27358ba1ea637001f9a15e55a92-400x400.jpeg",2021,'Black',4,1);
 
 
 
