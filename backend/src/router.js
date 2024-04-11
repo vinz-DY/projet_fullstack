@@ -28,7 +28,7 @@ router.get("/discs", discControllers.browse);
 router.get("/musicStyles", musicStyleControllers.browse);
 router.get("/games", gameControllers.browse);
 router.get("/genres", genreControllers.browse);
-router.get("/laserdiscs", laserdiscControllers.browse);
+router.get("/laserdiscs", checkCredentials, laserdiscControllers.browse);
 router.get("/movieStyles", movieStyleControllers.browse);
 // => {
 //   client
@@ -46,7 +46,7 @@ router.get("/movieStyles", movieStyleControllers.browse);
 
 router.get("/games/:id", gameControllers.read);
 router.get("/discs/:id", discControllers.read);
-router.get("/laserdiscs/:id", laserdiscControllers.read);
+router.get("/laserdiscs/:id", checkCredentials, laserdiscControllers.read);
 
 // Route to put and update by ID
 
