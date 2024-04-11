@@ -19,7 +19,7 @@
   transition: transform 0.4s ease;
 }
 
-.One:hover {
+.Two:hover {
   transform: scale(1.05);
   transition: transform 0.4s ease;
   border: 1px solid #f9d719;
