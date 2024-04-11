@@ -8,7 +8,8 @@ const schema = Joi.object({
   teaser: Joi.string().required(),
   movieStyle_id: Joi.number(),
   movieStyle_label: Joi.string(),
-});
+  user_id: Joi.number(),
+}).unknown(false);
 
 const validateLaserdisc = (req, res, next) => {
   const { error } = schema.validate(req.body);

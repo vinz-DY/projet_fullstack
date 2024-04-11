@@ -6,7 +6,7 @@ const browse = async (req, res, next) => {
   try {
     const searchTerm = req.query.searchTerm || "";
     // Fetch all games from the database
-    const games = await tables.game.readAll(searchTerm);
+    const games = await tables.game.readAll(req.user.id, searchTerm);
 
     // Respond with the games in JSON format
     res.status(200).json(games);
@@ -20,7 +20,7 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific game from the database based on the provided ID
-    const game = await tables.game.read(req.params.id);
+    const game = await tables.game.read(req.user.id, req.params.id);
 
     // If the game is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the game in JSON format
@@ -43,7 +43,7 @@ const edit = async (req, res, next) => {
   const game = req.body;
 
   try {
-    await tables.game.update(req.params.id, game);
+    await tables.game.update(req.user.id, req.params.id, game);
     // Insert the game into the database
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted game
@@ -60,7 +60,7 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the game into the database
-    const insertId = await tables.game.create(game);
+    const insertId = await tables.game.create(req.user.id, game);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted game
     res.status(201).json({ insertId });
@@ -77,7 +77,7 @@ const destroy = async (req, res, next) => {
 
   try {
     // delete the game into the database
-    await tables.game.delete(gameId);
+    await tables.game.delete(req.user.id, gameId);
 
     // Check the result of the deletion
     res.sendStatus(204);

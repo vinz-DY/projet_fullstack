@@ -26,7 +26,7 @@ const validateLaserdisc = require("./validators/validateLaserdisc");
 router.get("/users", userControllers.browse);
 router.get("/discs", discControllers.browse);
 router.get("/musicStyles", musicStyleControllers.browse);
-router.get("/games", gameControllers.browse);
+router.get("/games", checkCredentials, gameControllers.browse);
 router.get("/genres", genreControllers.browse);
 router.get("/laserdiscs", checkCredentials, laserdiscControllers.browse);
 router.get("/movieStyles", movieStyleControllers.browse);
@@ -44,7 +44,7 @@ router.get("/movieStyles", movieStyleControllers.browse);
 
 // Route to get a specific item by ID
 
-router.get("/games/:id", gameControllers.read);
+router.get("/games/:id", checkCredentials, gameControllers.read);
 router.get("/discs/:id", discControllers.read);
 router.get("/laserdiscs/:id", checkCredentials, laserdiscControllers.read);
 
