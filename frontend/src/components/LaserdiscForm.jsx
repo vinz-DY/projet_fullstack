@@ -227,9 +227,9 @@ function LaserdiscForm() {
           <table>
             <thead>
               <tr>
-                <th>Place</th>
-                <th>Original Title</th>
+                {/* <th>Place</th> */}
                 <th>Image</th>
+                <th>Original Title</th>
                 <th>Date</th>
                 <th>Genre</th>
                 <th>Teaser</th>
@@ -240,8 +240,7 @@ function LaserdiscForm() {
               {filteredlaserdiscs.map((laserdisc) => {
                 return (
                   <tr key={laserdisc.id}>
-                    <td>{laserdisc.id}</td>
-                    <td>{laserdisc.originalMovieTitle}</td>
+                    {/* <td>{laserdisc.id}</td> */}
                     <td>
                       <img
                         className="imgList2"
@@ -249,6 +248,7 @@ function LaserdiscForm() {
                         alt="cover laserdisc"
                       />
                     </td>
+                    <td>{laserdisc.originalMovieTitle}</td>
                     <td>{laserdisc.year}</td>
                     <td>{laserdisc.movieStyle_label}</td>
                     <td>{laserdisc.teaser}</td>
