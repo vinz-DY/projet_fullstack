@@ -21,16 +21,21 @@
 }
 
 .buttonHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1rem;
   font-weight: 600;
-  text-align: center;
-  align-items: center;
   width: 8rem;
   padding: 1.6rem;
   border-radius: 0.8rem;
   cursor: pointer;
   transition: 1s ease;
   border: none;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .buttonHome:hover {

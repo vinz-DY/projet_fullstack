@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./admin.css";
 import LaserdiscForm from "../components/LaserdiscForm";
+import "./admin.css";
 
 function AdminLaserdisc() {
   return (
     <div className="AdminCont">
       <h2 className="titleAdmin">Manage your collection</h2>
       <div className="adminbtndiv">
-        <Link to="/">
+        <Link to="/" className="link">
           <button type="button" className="buttonHome">
-            Home
+            <span>Home</span>
           </button>
         </Link>
-        <Link to="/laserdiscs">
+        <Link to="/laserdiscs" className="link">
           <button type="button" className="buttonHome">
-            Laserdiscs
+            <span>Laserdiscs</span>
           </button>
         </Link>
       </div>

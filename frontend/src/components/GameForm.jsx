@@ -221,9 +221,9 @@ function GameForm() {
           <table>
             <thead>
               <tr>
-                <th>Place</th>
+                {/* <th>Place</th> */}
+                <th>Cover</th>
                 <th>Title</th>
-                <th>Image</th>
                 <th>Date</th>
                 <th>System</th>
                 <th>Style</th>
@@ -234,8 +234,7 @@ function GameForm() {
               {filteredGames.map((game) => {
                 return (
                   <tr key={game.id}>
-                    <td>{game.id}</td>
-                    <td>{game.title}</td>
+                    {/* <td>{game.id}</td> */}
                     <td>
                       <img
                         className="imgList"
@@ -243,6 +242,7 @@ function GameForm() {
                         alt="cover game"
                       />
                     </td>
+                    <td>{game.title}</td>
                     <td>{game.year}</td>
                     <td>{game.console}</td>
                     <td>{game.genre_label}</td>

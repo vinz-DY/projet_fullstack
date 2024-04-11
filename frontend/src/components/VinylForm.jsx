@@ -237,10 +237,10 @@ function VinylForm() {
           <table>
             <thead>
               <tr>
-                <th>Place</th>
+                {/* <th>Place</th> */}
+                <th>Image</th>
                 <th>Artist</th>
                 <th>Album</th>
-                <th>Image</th>
                 <th>Date</th>
                 <th>Style</th>
                 <th>Color</th>
@@ -251,9 +251,7 @@ function VinylForm() {
               {filtereddiscs.map((disc) => {
                 return (
                   <tr key={disc.id}>
-                    <td>{disc.id}</td>
-                    <td>{disc.artist}</td>
-                    <td>{disc.title}</td>
+                    {/* <td>{disc.id}</td> */}
                     <td>
                       <img
                         className="imgList2"
@@ -261,6 +259,8 @@ function VinylForm() {
                         alt="cover disc"
                       />
                     </td>
+                    <td>{disc.artist}</td>
+                    <td>{disc.title}</td>
                     <td>{disc.year}</td>
                     <td>{disc.musicStyle_label}</td>
                     <td>{disc.color}</td>
