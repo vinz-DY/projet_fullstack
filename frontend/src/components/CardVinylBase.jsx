@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function CardVinylBase({ disc }) {
   return (
     <Link to={`/vinyl/${disc.id}`}>
-      <div className="One">
+      <div className="Two">
         <img className="discpics" src={disc.image} alt={disc.title} />
       </div>
     </Link>

@@ -93,8 +93,8 @@ tr {
 .imgList2 {
   width: 85px;
   height: 85px;
-  border: solid 1px rgb(232, 231, 225);
-  margin: 0.5rem;
+  outline: solid 1px rgb(232, 231, 225);
+  margin-top: 1rem;
 }
 
 @media only screen and (max-width: 600px) {

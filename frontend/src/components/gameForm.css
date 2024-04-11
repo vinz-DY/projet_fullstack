@@ -85,6 +85,10 @@ h2 {
   margin-bottom: 10rem;
 }
 
+.imgList {
+  outline: solid 0.15rem white;
+  margin-top: 1rem;
+}
 @media only screen and (max-width: 600px) {
   .FormBigCtn {
     width: 100%;

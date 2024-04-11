@@ -6,7 +6,7 @@ import "./cardVinylBase.css";
 function CardLaserdiscBase({ LD }) {
   return (
     <Link to={`/laserdisc/${LD.id}`}>
-      <div className="One">
+      <div className="Two">
         <img className="discpics" src={LD.image} alt={LD.originalMovieTitle} />
       </div>
     </Link>
