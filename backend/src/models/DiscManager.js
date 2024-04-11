@@ -61,9 +61,9 @@ class discManager extends AbstractManager {
     if (searchTerm) {
       query += ` AND artist LIKE ?`;
       params.push(`%${searchTerm}%`);
-      query += " ORDER BY artist ASC";
+      query += " ORDER BY artist ASC, year ASC";
     } else {
-      query += " ORDER BY artist ASC";
+      query += " ORDER BY artist ASC, year ASC";
       query += " LIMIT 15";
     }
 
