@@ -40,9 +40,11 @@ class GameManager extends AbstractManager {
     const params = [userId];
 
     if (searchTerm) {
-      query += ` WHERE title LIKE ?`;
-      params.push = [`%${searchTerm}%`];
+      query += ` AND title LIKE ?`;
+      params.push(`%${searchTerm}%`);
+      query += " ORDER BY title ASC"; // Utilisez la méthode push pour ajouter l'élément au tableau params
     } else {
+      query += " ORDER BY title ASC";
       query += " LIMIT 8";
     }
 

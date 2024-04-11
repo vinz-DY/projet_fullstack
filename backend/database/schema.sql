@@ -116,7 +116,7 @@ INSERT INTO genre(label) VALUES ("RPG");
 INSERT INTO genre(label) VALUES ("Puzzle");
 
 INSERT INTO game(title, image, year, console, genre_id, user_id) VALUES ('Alex kidd in miracle world','https://images.launchbox-app.com/e9a25f89-4489-48db-a4d1-ed95fbeaef07.jpg',1986,'sega master system',1, 1);
-INSERT INTO game(title,image,year,console, genre_id, user_id) VALUES ('super mario bros','https://cdn02.nintendo-europe.com/media/images/05_packshots/games_13/nes_1/PS_NES_SuperMarioBros.jpg',1985,'nintendo Nes',1,2);
+INSERT INTO game(title,image,year,console, genre_id, user_id) VALUES ('super mario bros','https://cdn02.nintendo-europe.com/media/images/05_packshots/games_13/nes_1/PS_NES_SuperMarioBros.jpg',1985,'nintendo Nes',1,1);
 -- INSERT INTO game(title,image,year,console, genre_id) VALUES ('fatal fury special','https://www.mobygames.com/images/covers/l/42665-fatal-fury-special-neo-geo-front-cover.jpg',1993,'NEO GEO',2);
 -- INSERT INTO game(title,image,year,console, genre_id) VALUES ('soccer brawl','https://romspure.cc/wp-content/uploads/2020/05/1589158208-b34c127a-9098-47ce-9d74-aa4c0c91c121.jpg',1992,'NEO GEO',3);
 -- INSERT INTO game(title,image,year,console, genre_id) VALUES ('world heroes 2 jet','https://cdn.mobygames.com/covers/657987-world-heroes-2-jet-neo-geo-front-cover.jpg',1994,'NEO GEO',2);

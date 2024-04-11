@@ -54,7 +54,9 @@ class LaserdiscManager extends AbstractManager {
     if (searchTerm) {
       query += ` AND originalMovieTitle LIKE ?`;
       params.push(`%${searchTerm}%`);
+      query += " ORDER BY originalMovieTitle ASC";
     } else {
+      query += " ORDER BY originalMovieTitle ASC";
       query += " LIMIT 15";
     }
 
