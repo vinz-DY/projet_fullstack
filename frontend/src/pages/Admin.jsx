@@ -8,14 +8,14 @@ function Admin() {
     <div className="AdminCont">
       <h2 className="titleAdmin">Manage your collection</h2>
       <div className="adminbtndiv">
-        <Link to="/">
+        <Link to="/" className="link">
           <button type="button" className="buttonHome">
-            Home
+            <span>Home</span>
           </button>
         </Link>
-        <Link to="/games">
+        <Link to="/games" className="link">
           <button type="button" className="buttonHome">
-            Games
+            <span>Games</span>
           </button>
         </Link>
       </div>

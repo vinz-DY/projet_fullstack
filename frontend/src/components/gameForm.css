@@ -88,6 +88,8 @@ h2 {
 .imgList {
   outline: solid 0.15rem white;
   margin-top: 1rem;
+  width: 62px;
+  object-fit: cover;
 }
 @media only screen and (max-width: 600px) {
   .FormBigCtn {
