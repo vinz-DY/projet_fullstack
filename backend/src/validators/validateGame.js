@@ -8,7 +8,8 @@ const schema = Joi.object({
   console: Joi.string().required(),
   genre_id: Joi.number(),
   genre_label: Joi.string(),
-});
+  user_id: Joi.number(),
+}).unknown(false);
 
 const validateGame = (req, res, next) => {
   const { error } = schema.validate(req.body);
