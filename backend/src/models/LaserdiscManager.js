@@ -9,52 +9,58 @@ class LaserdiscManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(laserdisc) {
-    // Execute the SQL INSERT query to add a new laserdisc to the "laserdisc" table
+  async create(userId, laserdisc) {
+    // Exécuter la requête SQL INSERT pour ajouter un nouveau laserdisc à la table "laserdisc"
     const [result] = await this.database.query(
-      `insert into ${this.table} (originalMovieTitle, image, year, teaser, movieStyle_id) values (?, ? , ? , ? , ?)`,
+      `INSERT INTO ${this.table} (originalMovieTitle, image, year, teaser, movieStyle_id, user_id) VALUES (?, ? , ? , ? , ?, ?)`,
       [
         laserdisc.originalMovieTitle,
         laserdisc.image,
         laserdisc.year,
         laserdisc.teaser,
         laserdisc.movieStyle_id,
+        userId,
       ]
     );
 
-    // Return the ID of the newly inserted laserdisc
+    // Retourner l'ID du nouveau laserdisc inséré
     return result.insertId;
   }
 
   // The Rs of CRUD - Read operations
 
-  async read(id) {
-    // Execute the SQL SELECT query to retrieve a specific laserdisc by its ID
+  async read(userId, id) {
+    // Execute the SQL SELECT query to retrieve a specific laserdisc by its ID and user ID
     const [rows] = await this.database.query(
-      `SELECT laserdisc.*, movieStyle.label as movieStyle_label from ${this.table} LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id
-    WHERE laserdisc.id = ?
-  `,
-      [id]
+      `SELECT laserdisc.*, movieStyle.label as movieStyle_label 
+       FROM ${this.table} 
+       LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id
+       WHERE laserdisc.id = ? AND laserdisc.user_id = ?
+      `,
+      [id, userId]
     );
 
     // Return the first row of the result, which represents the laserdisc
     return rows[0];
   }
 
-  async readAll(searchTerm) {
-    let query = `SELECT laserdisc.*, movieStyle.label as movieStyle_label FROM ${this.table} LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id`;
-    let params = [];
+  async readAll(userId, searchTerm) {
+    let query = `SELECT laserdisc.*, movieStyle.label as movieStyle_label 
+                 FROM ${this.table} 
+                 LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id 
+                 WHERE laserdisc.user_id = ?`;
+    const params = [userId];
 
     if (searchTerm) {
-      query += ` WHERE originalMovieTitle LIKE ?`;
-      params = [`%${searchTerm}%`];
+      query += ` AND originalMovieTitle LIKE ?`;
+      params.push(`%${searchTerm}%`);
     } else {
       query += " LIMIT 15";
     }
 
     const [rows] = await this.database.query(query, params);
 
-    // Return the array of cars
+    // Return the array of movies
     return rows;
   }
 
@@ -62,10 +68,10 @@ class LaserdiscManager extends AbstractManager {
   // TODO: Implement the update operation to modify an existing laserdisc
 
   // async update(laserdisc) {
-  async update(id, laserdisc) {
-    // Execute the SQL INSERT query to add a new laserdisc to the "laserdisc" table
+  async update(userId, id, laserdisc) {
+    // Exécuter la requête SQL UPDATE pour modifier un laserdisc existant dans la table "laserdisc"
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET originalMovieTitle = ?, image = ?, year = ?, teaser = ?, movieStyle_id= ? WHERE id = ?`,
+      `UPDATE ${this.table} SET originalMovieTitle = ?, image = ?, year = ?, teaser = ?, movieStyle_id = ? WHERE id = ? AND user_id = ?`,
       [
         laserdisc.originalMovieTitle,
         laserdisc.image,
@@ -73,40 +79,41 @@ class LaserdiscManager extends AbstractManager {
         laserdisc.teaser,
         laserdisc.movieStyle_id,
         id,
+        userId,
       ]
     );
 
-    // Return the ID of the newly inserted laserdisc
+    // Retourner l'ID du laserdisc mis à jour
     return result.insertId;
   }
   //   ...
   // }
 
   // The D of CRUD - Delete operation
-  async delete(id) {
+  async delete(userId, id) {
     try {
-      // Execute the SQL DELETE query to delete a specific laserdisc by its ID
+      // Exécuter la requête SQL DELETE pour supprimer un laserdisc spécifique par son ID et l'ID de l'utilisateur
       const result = await this.database.query(
-        `DELETE FROM ${this.table} WHERE id = ?`,
-        [id]
+        `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
+        [id, userId]
       );
 
-      // Check the affectedRows property to verify if the deletion was successful
+      // Vérifier la propriété affectedRows pour vérifier si la suppression a réussi
       if (result && result.affectedRows > 0)
-        return { message: "Delete successful" };
-      return { message: "laserdisc not found" };
+        return { message: "Suppression réussie" };
+      return {
+        message:
+          "laserdisc non trouvé ou vous n'avez pas l'autorisation de le supprimer",
+      };
     } catch (error) {
-      // Handle the error, log it, etc.
-      console.error("Error deleting laserdisc:", error.message);
-      return { message: "Error deleting laserdisc" };
+      // Gérer l'erreur, la journaliser, etc.
+      console.error(
+        "Erreur lors de la suppression du laserdisc:",
+        error.message
+      );
+      return { message: "Erreur lors de la suppression du laserdisc" };
     }
   }
-
-  // TODO: Implement the delete operation to remove an laserdisc by its ID
-
-  // async delete(id) {
-  //   ...
-  // }
 }
 
 module.exports = LaserdiscManager;

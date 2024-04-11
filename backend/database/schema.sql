@@ -14,6 +14,12 @@ create table musicStyle (
 );
 
 
+create table user (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+   email  VARCHAR(255) NOT NULL UNIQUE,
+   hashpassword VARCHAR(255) NOT NULL,
+   role BOOLEAN DEFAULT 0
+);
 
 create table disc (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,7 +55,9 @@ create table laserdisc (
   movieStyle_id INT NOT NULL,
   CONSTRAINT fk_laserdisc_movieStyle
   FOREIGN KEY (movieStyle_id)
-  REFERENCES movieStyle(id)
+  REFERENCES movieStyle(id),
+  user_id INT NOT NULL,
+  CONSTRAINT fk_laserdisc_user FOREIGN KEY (user_id) REFERENCES user(id)
 );
 create table dvdBluray (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -74,12 +82,6 @@ create table vhs (
   REFERENCES movieStyle(id)
 );
 
-create table user (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-   email  VARCHAR(255) NOT NULL UNIQUE,
-   hashpassword VARCHAR(255) NOT NULL,
-   role BOOLEAN DEFAULT 0
-);
 
 INSERT INTO user(email, hashpassword) VALUES ('vincent@wild.com', 'turlututu');
 
@@ -129,8 +131,8 @@ INSERT INTO movieStyle(label) VALUES ('science fiction');
 INSERT INTO movieStyle(label) VALUES ('comedy');
 INSERT INTO movieStyle(label) VALUES ('asia');
 
-INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1);
-INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://i.ebayimg.com/images/g/n7oAAOSw4mJmBuj6/s-l1600.png",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
+INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1,1);
+INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_id) VALUES ('Ghostbusters',"https://i.ebayimg.com/images/g/n7oAAOSw4mJmBuj6/s-l1600.png",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3,1);
 
 INSERT INTO dvdbluray(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://mattclayne.com/wp-content/uploads/2017/12/Ghostbusters-Poster.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
 
