@@ -9,10 +9,10 @@ class discManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(disc) {
+  async create(userId, disc) {
     // Execute the SQL INSERT query to add a new disc to the "disc" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (artist, title, image, year, color, musicStyle_id) values (?, ? , ? , ? , ?, ?)`,
+      `insert into ${this.table} (artist, title, image, year, color, musicStyle_id, user_id) values (?, ? , ? , ? , ?, ?, ?)`,
       [
         disc.artist,
         disc.title,
@@ -20,6 +20,7 @@ class discManager extends AbstractManager {
         disc.year,
         disc.color,
         disc.musicStyle_id,
+        userId,
       ]
     );
 
@@ -29,13 +30,13 @@ class discManager extends AbstractManager {
 
   // The Rs of CRUD - Read operations
 
-  async read(id) {
+  async read(userId, id) {
     // Execute the SQL SELECT query to retrieve a specific disc by its ID
     const [rows] = await this.database.query(
       `SELECT disc.*, musicStyle.label as musicStyle_label from ${this.table} LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id
-    WHERE disc.id = ?
+    WHERE disc.id = ? AND disc.user_id = ?
   `,
-      [id]
+      [id, userId]
     );
 
     // Return the first row of the result, which represents the disc
@@ -53,14 +54,16 @@ class discManager extends AbstractManager {
   //   return rows;
   // }
 
-  async readAll(searchTerm) {
-    let query = `SELECT disc.*, musicStyle.label as musicStyle_label FROM ${this.table} LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id`;
-    let params = [];
+  async readAll(userId, searchTerm) {
+    let query = `SELECT disc.*, musicStyle.label as musicStyle_label FROM ${this.table} LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id WHERE disc.user_id = ?`;
+    const params = [userId];
 
     if (searchTerm) {
-      query += ` WHERE artist LIKE ?`;
-      params = [`%${searchTerm}%`];
+      query += ` AND artist LIKE ?`;
+      params.push(`%${searchTerm}%`);
+      query += " ORDER BY artist ASC";
     } else {
+      query += " ORDER BY artist ASC";
       query += " LIMIT 15";
     }
 
@@ -74,10 +77,10 @@ class discManager extends AbstractManager {
   // TODO: Implement the update operation to modify an existing disc
 
   // async update(disc) {
-  async update(id, disc) {
+  async update(userId, id, disc) {
     // Execute the SQL INSERT query to add a new disc to the "disc" table
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET artist = ?, title = ?, image = ?, year = ?, color = ?, musicStyle_id= ? WHERE id = ?`,
+      `UPDATE ${this.table} SET artist = ?, title = ?, image = ?, year = ?, color = ?, musicStyle_id= ? WHERE id = ? AND user_id = ?`,
       [
         disc.artist,
         disc.title,
@@ -86,6 +89,7 @@ class discManager extends AbstractManager {
         disc.color,
         disc.musicStyle_id,
         id,
+        userId,
       ]
     );
 
@@ -96,12 +100,12 @@ class discManager extends AbstractManager {
   // }
 
   // The D of CRUD - Delete operation
-  async delete(id) {
+  async delete(userId, id) {
     try {
       // Execute the SQL DELETE query to delete a specific disc by its ID
       const result = await this.database.query(
-        `DELETE FROM ${this.table} WHERE id = ?`,
-        [id]
+        `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
+        [id, userId]
       );
 
       // Check the affectedRows property to verify if the deletion was successful
