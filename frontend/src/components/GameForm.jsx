@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import connexion from "../services/connexion";
+import addSound from "../assets/add.mp3";
+import errorSound from "../assets/error.mp3";
+import cancelSound from "../assets/canceled.mp3";
 import "./gameForm.css";
 
 function GameForm() {
@@ -13,6 +16,9 @@ function GameForm() {
   const [genres, setGenres] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const addaudioRef = useRef(null);
+  const errorAudioRef = useRef(null);
+  const cancelAudioRef = useRef(null);
 
   const getGenres = async () => {
     try {
@@ -62,7 +68,6 @@ function GameForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await connexion.post("/games", formData);
       getGames();
@@ -73,8 +78,10 @@ function GameForm() {
         console: "",
         genre_id: "",
       });
+      addaudioRef.current.play();
       console.info("Nouveau jeu ajouté:", response.data);
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur lors de l'ajout du jeu:", error);
     }
   };
@@ -84,11 +91,11 @@ function GameForm() {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this game?"
     );
-
     if (confirmDelete) {
       try {
         const response = await connexion.delete(`/games/${id}`);
         getGames();
+        cancelAudioRef.current.play();
         console.info("Game deleted:", response.data);
       } catch (error) {
         console.error("Error deleting the game:", error);
@@ -103,6 +110,7 @@ function GameForm() {
     try {
       await connexion.put(`/games/${formData.id}`, formData);
       getGames();
+      addaudioRef.current.play();
       console.info("jeu modifié");
       setFormData({
         title: "",
@@ -112,6 +120,7 @@ function GameForm() {
         genre_id: "",
       });
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur de la modification du jeu:", error);
     }
   };
@@ -214,6 +223,12 @@ function GameForm() {
             <button className="buttonA" type="submit">
               {formData.id ? "Modifier" : "Ajouter"}
             </button>
+            <audio ref={addaudioRef} src={addSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
+            <audio ref={errorAudioRef} src={errorSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
           </div>
         </form>
         <section className="sectionCtn">
@@ -269,6 +284,9 @@ function GameForm() {
           </table>
         </section>
       </div>
+      <audio ref={cancelAudioRef} src={cancelSound}>
+        <track kind="captions" srcLang="en" label="English_captions" />
+      </audio>
     </>
   );
 }
