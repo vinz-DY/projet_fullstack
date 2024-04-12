@@ -7,30 +7,61 @@ import "./cardisplay.css";
 function Card() {
   const allGames = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
   const [filteredGames, setFilteredGames] = useState([]);
+  const [genres, setGenres] = useState([]);
 
-  // Filtrer les jeux en fonction de la recherche
-  // const filteredGames = allGames.filter((game) =>
-  //   game.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await connexion.get(
+  const fetchData = async () => {
+    try {
+      let response;
+      if (selectedLabel) {
+        response = await connexion.get(
+          `/games?label=${selectedLabel}&searchTerm=${searchTerm.toLocaleLowerCase()}`
+        );
+      } else {
+        response = await connexion.get(
           `/games?searchTerm=${searchTerm.toLocaleLowerCase()}`
         );
-        setFilteredGames(response.data);
-      } catch (error) {
-        console.error(error);
       }
-    };
+      setFilteredGames(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  const getGenres = async () => {
+    try {
+      const myGenres = await connexion.get("/genres").then((res) => res.data);
+      setGenres(myGenres);
+    } catch (error) {
+      console.error("Erreur récupération des genres:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
-  }, [searchTerm, allGames]);
+  }, [searchTerm, selectedLabel, allGames]);
+
+  useEffect(() => {
+    getGenres();
+  }, []);
 
   return (
     <div>
+      <div className="searchCtn">
+        <select
+          value={selectedLabel}
+          onChange={(e) => setSelectedLabel(e.target.value)}
+          className={selectedLabel ? "dropdownOpen" : "dropdownClosed"}
+        >
+          <option value="">Select your Game Style</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.label}>
+              {genre.label}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="searchCtn">
         <input
           className="searchbar"

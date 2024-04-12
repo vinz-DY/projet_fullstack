@@ -35,22 +35,30 @@ class GameManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll(userId, searchTerm) {
+  async readAll(userId, searchTerm, label) {
     let query = `SELECT game.*, genre.label as genre_label FROM ${this.table} LEFT JOIN genre ON game.genre_id = genre.id WHERE game.user_id = ?`;
     const params = [userId];
 
     if (searchTerm) {
       query += ` AND title LIKE ?`;
       params.push(`%${searchTerm}%`);
-      query += " ORDER BY title ASC"; // Utilisez la méthode push pour ajouter l'élément au tableau params
-    } else {
-      query += " ORDER BY title ASC";
+    }
+
+    if (label) {
+      query += ` AND genre.label = ?`;
+      params.push(label);
+    }
+
+    query += " ORDER BY title ASC";
+
+    if (!searchTerm) {
       query += " LIMIT 8";
+      // Limite à 8 résultats si aucun terme de recherche n'est spécifié
     }
 
     const [rows] = await this.database.query(query, params);
 
-    // Return the array of cars
+    // Return the array of games
     return rows;
   }
 

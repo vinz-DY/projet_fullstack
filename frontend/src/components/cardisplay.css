@@ -27,6 +27,17 @@
   cursor: pointer;
 }
 
+.dropdownOpen {
+  text-align: center;
+  font-weight: 500;
+  color: orange; /* Changer la couleur selon votre préférence */
+}
+.dropdownClosed {
+  text-align: center;
+  font-weight: 500;
+  color: black; /* Changer la couleur selon votre préférence */
+}
+
 .searchCtn {
   display: flex;
   flex-direction: column;
