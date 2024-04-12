@@ -5,8 +5,9 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const searchTerm = req.query.searchTerm || "";
+    const label = req.query.label || "";
     // Fetch all games from the database
-    const games = await tables.game.readAll(req.user.id, searchTerm);
+    const games = await tables.game.readAll(req.user.id, searchTerm, label);
 
     // Respond with the games in JSON format
     res.status(200).json(games);
