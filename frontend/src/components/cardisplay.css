@@ -30,12 +30,12 @@
 .dropdownOpen {
   text-align: center;
   font-weight: 500;
-  color: orange; /* Changer la couleur selon votre préférence */
+  color: orange;
 }
 .dropdownClosed {
   text-align: center;
   font-weight: 500;
-  color: black; /* Changer la couleur selon votre préférence */
+  color: black;
 }
 
 .searchCtn {
