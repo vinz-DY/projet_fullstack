@@ -9,7 +9,8 @@ const schema = Joi.object({
   color: Joi.string().required(),
   musicStyle_id: Joi.number(),
   musicStyle_label: Joi.string(),
-});
+  user_id: Joi.number(),
+}).unknown(false);
 
 const validateDisc = (req, res, next) => {
   const { error } = schema.validate(req.body);

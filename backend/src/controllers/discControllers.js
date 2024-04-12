@@ -6,7 +6,7 @@ const browse = async (req, res, next) => {
   try {
     const searchTerm = req.query.searchTerm || "";
     // Fetch all discs from the database
-    const discs = await tables.disc.readAll(searchTerm);
+    const discs = await tables.disc.readAll(req.user.id, searchTerm);
 
     // Respond with the discs in JSON format
     res.status(200).json(discs);
@@ -20,7 +20,7 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific disc from the database based on the provided ID
-    const disc = await tables.disc.read(req.params.id);
+    const disc = await tables.disc.read(req.user.id, req.params.id);
 
     // If the disc is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the disc in JSON format
@@ -43,7 +43,7 @@ const edit = async (req, res, next) => {
   const disc = req.body;
 
   try {
-    await tables.disc.update(req.params.id, disc);
+    await tables.disc.update(req.user.id, req.params.id, disc);
     // Insert the disc into the database
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted disc
@@ -60,7 +60,7 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the disc into the database
-    const insertId = await tables.disc.create(disc);
+    const insertId = await tables.disc.create(req.user.id, disc);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted disc
     res.status(201).json({ insertId });
@@ -77,7 +77,7 @@ const destroy = async (req, res, next) => {
 
   try {
     // delete the disc into the database
-    await tables.disc.delete(discId);
+    await tables.disc.delete(req.user.id, discId);
 
     // Check the result of the deletion
     res.sendStatus(204);
