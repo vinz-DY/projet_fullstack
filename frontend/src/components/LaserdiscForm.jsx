@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import connexion from "../services/connexion";
+import addSound from "../assets/add.mp3";
+import errorSound from "../assets/error.mp3";
+import cancelSound from "../assets/canceled.mp3";
 import "./vinylForm.css";
 
 function LaserdiscForm() {
@@ -13,6 +16,9 @@ function LaserdiscForm() {
   const [movieStyles, setmovieStyles] = useState([]);
   const [laserdiscs, setlaserdiscs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const addaudioRef = useRef(null);
+  const errorAudioRef = useRef(null);
+  const cancelAudioRef = useRef(null);
 
   const getmovieStyles = async () => {
     try {
@@ -77,8 +83,10 @@ function LaserdiscForm() {
         teaser: "",
         movieStyle_id: "",
       });
+      addaudioRef.current.play();
       console.info("Nouveau laserdisc ajouté:", response.data);
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur lors de l'ajout du laserdisc:", error);
     }
   };
@@ -93,6 +101,8 @@ function LaserdiscForm() {
       try {
         const response = await connexion.delete(`/laserdiscs/${id}`);
         getlaserdiscs();
+        cancelAudioRef.current.play();
+
         console.info("laserdisc deleted:", response.data);
       } catch (error) {
         console.error("Error deleting the laserdisc:", error);
@@ -107,6 +117,7 @@ function LaserdiscForm() {
     try {
       await connexion.put(`/laserdiscs/${formData.id}`, formData);
       getlaserdiscs();
+      addaudioRef.current.play();
       console.info("laserdisc modifié");
       setFormData({
         originalMovieTitle: "",
@@ -116,6 +127,7 @@ function LaserdiscForm() {
         movieStyle_id: "",
       });
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur de la modification du laserdisc:", error);
     }
   };
@@ -220,6 +232,12 @@ function LaserdiscForm() {
             <button className="buttonA" type="submit">
               {formData.id ? "Modifier" : "Ajouter"}
             </button>
+            <audio ref={addaudioRef} src={addSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
+            <audio ref={errorAudioRef} src={errorSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
           </div>
         </form>
         <section className="sectionCtn">
@@ -275,6 +293,9 @@ function LaserdiscForm() {
           </table>
         </section>
       </div>
+      <audio ref={cancelAudioRef} src={cancelSound}>
+        <track kind="captions" srcLang="en" label="English_captions" />
+      </audio>
     </>
   );
 }
