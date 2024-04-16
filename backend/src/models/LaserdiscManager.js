@@ -44,7 +44,7 @@ class LaserdiscManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll(userId, searchTerm) {
+  async readAll(userId, searchTerm, label) {
     let query = `SELECT laserdisc.*, movieStyle.label as movieStyle_label 
                  FROM ${this.table} 
                  LEFT JOIN movieStyle ON laserdisc.movieStyle_id = movieStyle.id 
@@ -54,10 +54,18 @@ class LaserdiscManager extends AbstractManager {
     if (searchTerm) {
       query += ` AND originalMovieTitle LIKE ?`;
       params.push(`%${searchTerm}%`);
-      query += " ORDER BY originalMovieTitle ASC";
-    } else {
-      query += " ORDER BY originalMovieTitle ASC";
-      query += " LIMIT 15";
+    }
+
+    if (label) {
+      query += ` AND movieStyle.label = ?`;
+      params.push(label);
+    }
+
+    query += " ORDER BY originalMovieTitle ASC";
+
+    if (!searchTerm) {
+      query += " LIMIT 8";
+      // Limite à 8 résultats si aucun terme de recherche n'est spécifié
     }
 
     const [rows] = await this.database.query(query, params);
