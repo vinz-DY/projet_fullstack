@@ -5,8 +5,14 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const searchTerm = req.query.searchTerm || "";
+    const label = req.query.label || "";
+
     // Récupérer tous les laserdiscs de la base de données
-    const laserdiscs = await tables.laserdisc.readAll(req.user.id, searchTerm);
+    const laserdiscs = await tables.laserdisc.readAll(
+      req.user.id,
+      searchTerm,
+      label
+    );
 
     // Répondre avec les laserdiscs au format JSON
     res.status(200).json(laserdiscs);
