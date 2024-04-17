@@ -5,8 +5,10 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const searchTerm = req.query.searchTerm || "";
+    const label = req.query.label || "";
+
     // Fetch all discs from the database
-    const discs = await tables.disc.readAll(req.user.id, searchTerm);
+    const discs = await tables.disc.readAll(req.user.id, searchTerm, label);
 
     // Respond with the discs in JSON format
     res.status(200).json(discs);

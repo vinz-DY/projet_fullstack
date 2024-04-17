@@ -54,22 +54,30 @@ class discManager extends AbstractManager {
   //   return rows;
   // }
 
-  async readAll(userId, searchTerm) {
+  async readAll(userId, searchTerm, label) {
     let query = `SELECT disc.*, musicStyle.label as musicStyle_label FROM ${this.table} LEFT JOIN musicStyle ON disc.musicStyle_id = musicStyle.id WHERE disc.user_id = ?`;
     const params = [userId];
 
     if (searchTerm) {
       query += ` AND artist LIKE ?`;
       params.push(`%${searchTerm}%`);
-      query += " ORDER BY artist ASC, year ASC";
-    } else {
-      query += " ORDER BY artist ASC, year ASC";
+    }
+
+    if (label) {
+      query += ` AND musicStyle.label = ?`;
+      params.push(label);
+    }
+
+    query += " ORDER BY artist ASC";
+
+    if (!searchTerm) {
       query += " LIMIT 15";
+      // Limite à 15 résultats si aucun terme de recherche n'est spécifié
     }
 
     const [rows] = await this.database.query(query, params);
 
-    // Return the array of cars
+    // Return the array of movies
     return rows;
   }
 
