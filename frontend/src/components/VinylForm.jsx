@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import connexion from "../services/connexion";
+import addSound from "../assets/add.mp3";
+import errorSound from "../assets/error.mp3";
+import cancelSound from "../assets/canceled.mp3";
 import "./vinylForm.css";
 
 function VinylForm() {
@@ -14,6 +17,9 @@ function VinylForm() {
   const [musicStyles, setmusicStyles] = useState([]);
   const [discs, setdiscs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const addaudioRef = useRef(null);
+  const errorAudioRef = useRef(null);
+  const cancelAudioRef = useRef(null);
 
   const getmusicStyles = async () => {
     try {
@@ -77,8 +83,10 @@ function VinylForm() {
         color: "",
         musicStyle_id: "",
       });
+      addaudioRef.current.play();
       console.info("Nouveau vinyle ajouté:", response.data);
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur lors de l'ajout du vinyle:", error);
     }
   };
@@ -93,6 +101,7 @@ function VinylForm() {
       try {
         const response = await connexion.delete(`/discs/${id}`);
         getdiscs();
+        cancelAudioRef.current.play();
         console.info("disc deleted:", response.data);
       } catch (error) {
         console.error("Error deleting the disc:", error);
@@ -107,6 +116,7 @@ function VinylForm() {
     try {
       await connexion.put(`/discs/${formData.id}`, formData);
       getdiscs();
+      addaudioRef.current.play();
       console.info("vinyle modifié");
       setFormData({
         artist: "",
@@ -117,6 +127,7 @@ function VinylForm() {
         musicStyle_id: "",
       });
     } catch (error) {
+      errorAudioRef.current.play();
       console.error("Erreur de la modification du vinyle:", error);
     }
   };
@@ -230,6 +241,12 @@ function VinylForm() {
             <button className="buttonA" type="submit">
               {formData.id ? "Modifier" : "Ajouter"}
             </button>
+            <audio ref={addaudioRef} src={addSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
+            <audio ref={errorAudioRef} src={errorSound}>
+              <track kind="captions" srcLang="en" label="English_captions" />
+            </audio>
           </div>
         </form>
         <section className="sectionCtn">
@@ -287,6 +304,9 @@ function VinylForm() {
           </table>
         </section>
       </div>
+      <audio ref={cancelAudioRef} src={cancelSound}>
+        <track kind="captions" srcLang="en" label="English_captions" />
+      </audio>
     </>
   );
 }
