@@ -93,8 +93,12 @@ create table drama (
   movieStyle_id INT NOT NULL,
   CONSTRAINT fk_drama_movieStyle
   FOREIGN KEY (movieStyle_id)
-  REFERENCES movieStyle(id)
+  REFERENCES movieStyle(id),
+  user_id INT NOT NULL,
+  CONSTRAINT fk_drama_user FOREIGN KEY (user_id) REFERENCES user(id)
 );
+
+
 
 
 INSERT INTO user(email, hashpassword) VALUES ('vincent@wild.com', 'turlututu');
@@ -152,4 +156,5 @@ INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_
 INSERT INTO dvdbluray(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://mattclayne.com/wp-content/uploads/2017/12/Ghostbusters-Poster.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
 
 INSERT INTO vhs(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://www.filmsfantastiques.com/wp-content/uploads/2022/02/s-o-s-fantomes-poster-OK.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
-INSERT INTO drama(title,image,year,teaser, movieStyle_id) VALUES ('A Time Called You',"https://preview.redd.it/netflix-a-time-called-you-main-poster-ahn-hyo-seop-jeon-yeo-v0-iniebpwpbyjb1.jpg?width=1080&crop=smart&auto=webp&s=223d06f6f9ad254fa95224e3a3cdb47857307fad",2023,'https://youtu.be/sT-Pwa-Dw98',6);
+INSERT INTO drama(title,image,year,teaser, movieStyle_id, user_id) VALUES ('A Time Called You',"https://preview.redd.it/netflix-a-time-called-you-main-poster-ahn-hyo-seop-jeon-yeo-v0-iniebpwpbyjb1.jpg?width=1080&crop=smart&auto=webp&s=223d06f6f9ad254fa95224e3a3cdb47857307fad",2023,'https://youtu.be/sT-Pwa-Dw98',6,2);
+

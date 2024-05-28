@@ -14,6 +14,7 @@ const userControllers = require("./controllers/userControllers");
 const genreControllers = require("./controllers/genreControllers");
 const musicStyleControllers = require("./controllers/musicStyleControllers");
 const laserdiscControllers = require("./controllers/laserdiscControllers");
+const dramaControllers = require("./controllers/dramaControllers");
 const movieStyleControllers = require("./controllers/movieStyleControllers");
 const validateUser = require("./validators/validateUser");
 const validateGame = require("./validators/validateGame");
@@ -29,6 +30,7 @@ router.get("/musicStyles", musicStyleControllers.browse);
 router.get("/games", checkCredentials, gameControllers.browse);
 router.get("/genres", genreControllers.browse);
 router.get("/laserdiscs", checkCredentials, laserdiscControllers.browse);
+router.get("/dramas", checkCredentials, dramaControllers.browse);
 router.get("/movieStyles", movieStyleControllers.browse);
 // => {
 //   client

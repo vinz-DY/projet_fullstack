@@ -10,6 +10,7 @@ const DiscManager = require("./models/DiscManager");
 const MusicStyleManager = require("./models/MusicStyleManager");
 const UserManager = require("./models/UserManager");
 const LaserdiscManager = require("./models/LaserdiscManager");
+const DramaManager = require("./models/DramaManager");
 const MovieStyleManager = require("./models/MovieStyleManager");
 
 const managers = [
@@ -20,6 +21,7 @@ const managers = [
   MusicStyleManager,
   UserManager,
   LaserdiscManager,
+  DramaManager,
   MovieStyleManager,
 
   // Add other managers here
