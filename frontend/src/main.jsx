@@ -19,6 +19,8 @@ import PageLaserdiscOne from "./pages/PageLaserdiscOne";
 import Laserdiscos from "./pages/Laserdiscos";
 import AdminLaserdisc from "./pages/AdminLaserdisc";
 
+import DramasPage from "./pages/DramasPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -106,6 +108,16 @@ const router = createBrowserRouter([
       {
         path: "/adminLaserdiscs",
         element: <AdminLaserdisc />,
+      },
+      {
+        path: "/dramas",
+        element: <DramasPage/>,
+        loader: () => {
+          return connexion
+            .get("/dramas")
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
       },
     ],
   },

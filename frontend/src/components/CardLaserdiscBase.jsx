@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./cardVinylBase.css";
 
-// la props LD vient de CardLaserdiscFiltered.jsx
+// la props LD vient de CardLdFilter.jsx
 function CardLaserdiscBase({ LD }) {
   return (
     <Link to={`/laserdisc/${LD.id}`}>
