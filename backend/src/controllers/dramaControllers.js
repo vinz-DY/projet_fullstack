@@ -8,11 +8,7 @@ const browse = async (req, res, next) => {
     const label = req.query.label || "";
 
     // Récupérer tous les dramas de la base de données
-    const dramas = await tables.drama.readAll(
-      req.user.id,
-      searchTerm,
-      label
-    );
+    const dramas = await tables.drama.readAll(req.user.id, searchTerm, label);
 
     // Répondre avec les dramas au format JSON
     res.status(200).json(dramas);
