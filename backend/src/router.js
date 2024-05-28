@@ -49,6 +49,7 @@ router.get("/movieStyles", movieStyleControllers.browse);
 router.get("/games/:id", checkCredentials, gameControllers.read);
 router.get("/discs/:id", checkCredentials, discControllers.read);
 router.get("/laserdiscs/:id", checkCredentials, laserdiscControllers.read);
+router.get("/dramas/:id", checkCredentials, dramaControllers.read);
 
 // Route to put and update by ID
 
