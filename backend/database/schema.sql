@@ -84,6 +84,17 @@ create table vhs (
   FOREIGN KEY (movieStyle_id)
   REFERENCES movieStyle(id)
 );
+create table drama (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  year  INT(4) NOT NULL,
+  teaser VARCHAR(255)NOT NULL,
+  movieStyle_id INT NOT NULL,
+  CONSTRAINT fk_drama_movieStyle
+  FOREIGN KEY (movieStyle_id)
+  REFERENCES movieStyle(id)
+);
 
 
 INSERT INTO user(email, hashpassword) VALUES ('vincent@wild.com', 'turlututu');
@@ -133,6 +144,7 @@ INSERT INTO movieStyle(label) VALUES ('action');
 INSERT INTO movieStyle(label) VALUES ('science fiction');
 INSERT INTO movieStyle(label) VALUES ('comedy');
 INSERT INTO movieStyle(label) VALUES ('asia');
+INSERT INTO movieStyle(label) VALUES ('Romance');
 
 INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_id) VALUES ('Poltergeist',"https://cdn7.cachefly.net/images/large/Poltergeist-AC-3-Dolby-Digital-LaserDisc-ML104961.jpg",1982,'https://www.youtube.com/watch?v=9eZgEKjYJqA',1,1);
 INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_id) VALUES ('Ghostbusters',"https://i.ebayimg.com/images/g/n7oAAOSw4mJmBuj6/s-l1600.png",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3,1);
@@ -140,3 +152,4 @@ INSERT INTO laserdisc(originalMovieTitle,image,year,teaser, movieStyle_id, user_
 INSERT INTO dvdbluray(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://mattclayne.com/wp-content/uploads/2017/12/Ghostbusters-Poster.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
 
 INSERT INTO vhs(originalMovieTitle,image,year,teaser, movieStyle_id) VALUES ('Ghostbusters',"https://www.filmsfantastiques.com/wp-content/uploads/2022/02/s-o-s-fantomes-poster-OK.jpg",1984,'https://www.youtube.com/watch?v=qQmeh25Rr-k',3);
+INSERT INTO drama(title,image,year,teaser, movieStyle_id) VALUES ('A Time Called You',"https://preview.redd.it/netflix-a-time-called-you-main-poster-ahn-hyo-seop-jeon-yeo-v0-iniebpwpbyjb1.jpg?width=1080&crop=smart&auto=webp&s=223d06f6f9ad254fa95224e3a3cdb47857307fad",2023,'https://youtu.be/sT-Pwa-Dw98',6);
