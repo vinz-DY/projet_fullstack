@@ -12,9 +12,9 @@ class dramaManager extends AbstractManager {
   async create(userId, drama) {
     // Exécuter la requête SQL INSERT pour ajouter un nouveau drama à la table "drama"
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (originalMovieTitle, image, year, teaser, movieStyle_id, user_id) VALUES (?, ? , ? , ? , ?, ?)`,
+      `INSERT INTO ${this.table} (title, image, year, teaser, movieStyle_id, user_id) VALUES (?, ? , ? , ? , ?, ?)`,
       [
-        drama.originalMovieTitle,
+        drama.title,
         drama.image,
         drama.year,
         drama.teaser,
