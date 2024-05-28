@@ -81,9 +81,9 @@ class dramaManager extends AbstractManager {
   async update(userId, id, drama) {
     // Exécuter la requête SQL UPDATE pour modifier un drama existant dans la table "drama"
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET originalMovieTitle = ?, image = ?, year = ?, teaser = ?, movieStyle_id = ? WHERE id = ? AND user_id = ?`,
+      `UPDATE ${this.table} SET title = ?, image = ?, year = ?, teaser = ?, movieStyle_id = ? WHERE id = ? AND user_id = ?`,
       [
-        drama.originalMovieTitle,
+        drama.title,
         drama.image,
         drama.year,
         drama.teaser,
@@ -117,10 +117,7 @@ class dramaManager extends AbstractManager {
       };
     } catch (error) {
       // Gérer l'erreur, la journaliser, etc.
-      console.error(
-        "Erreur lors de la suppression du drama:",
-        error.message
-      );
+      console.error("Erreur lors de la suppression du drama:", error.message);
       return { message: "Erreur lors de la suppression du drama" };
     }
   }
